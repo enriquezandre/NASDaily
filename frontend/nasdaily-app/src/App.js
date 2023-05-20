@@ -1,7 +1,11 @@
+import React from "react";
+import { Navigationbar } from "./Components/Navigationbar";
+
 function App() {
   return (
-    <div className="App">
-    </div>
+    <>
+      <Navigationbar/>
+    </>
   );
 }
 
