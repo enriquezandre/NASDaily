@@ -17,7 +17,7 @@ function Timeinout() {
   return (
     <div>
       <Header username="USERNAME" />
-      <div className="image-container">
+      <div className="timeinout-image-container">
         <img src={GLE} alt="GLE" className="image-size" />
         <button className="button" onClick={handleClick}>
           {buttonText}

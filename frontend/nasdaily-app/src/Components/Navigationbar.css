@@ -1,48 +1,11 @@
-@import url('https://fonts.googleapis.com/css2?family=Barlow:wght@400;500&display=swap');
-
 .color-nav {
-    background-color: #E9C434;
-    position: relative;
-    padding: 0;
-  }
-  
-  .navbar-content {
-    display: flex;
-    align-items: center;
-  }
-  
-  .navbar-logo-container {
-    flex-shrink: 0;
-    margin-right: 10px;
-  }
-  
+  background-color: #E9C434;
+  position: relative;
+  padding: 0 !important; /* Remove or set it to 0 */
+}
+
   .navbar-logo-image {
     height: 100%;
     width: auto;
     max-height: 70px;
-    filter: drop-shadow(3px 3px 3px rgb(255, 255, 255));
-  }
-  
-  .brand-name {
-    flex-grow: 1;
-    text-align: left;
-    font-family: 'Barlow', sans-serif;
-  }
-  
-  .citu-title {
-    font-size: 1.5rem;
-    color: #8A353C;
-    font-weight: 1000;
-  }
-  
-  .nas-title {
-    font-size: 1.2rem;
-    font-weight: 700;
-  }
-
-  .oval {
-    width: 300px;
-    height: 150px;
-    background: #8A353C;
-    border-radius: 100px / 50px;
   }
