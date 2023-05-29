@@ -1,4 +1,5 @@
-﻿using nas_daily_api.Dtos;
+﻿using System.Xml.Linq;
+using nas_daily_api.Dtos;
 using nas_daily_api.Repositories;
 
 namespace nas_daily_api.Services
@@ -10,6 +11,21 @@ namespace nas_daily_api.Services
         public OASService(IOASRepository oasRepository)
         {
             _oasRepository = oasRepository;
+        }
+
+        public string DeleteOASByUserId(string userId)
+        {
+            return _oasRepository.DeleteByUserId(userId);
+        }
+
+        public string DelteOASByName(string name)
+        {
+            return _oasRepository.DeleteByName(name);
+        }
+
+        public OASDto GetOASByName(string name)
+        {
+            return _oasRepository.GetByUserId(name);
         }
 
         public OASDto GetOASByUserId(string userId)
