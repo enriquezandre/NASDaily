@@ -10,5 +10,6 @@
         public string? SuperiorCollectionName { get; set; }
         public string? ScheduleCollectionName { get; set; }
         public string? LogCollectionName { get; set; }
+        public string? TasksCollectionName { get; set; }
     }
 }

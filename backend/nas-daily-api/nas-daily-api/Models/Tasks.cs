@@ -2,5 +2,7 @@
 {
     public class Tasks
     {
+        public string? TaskId { get; set; }
+        public string? Description { get; set;}
     }
 }
