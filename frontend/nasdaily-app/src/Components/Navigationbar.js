@@ -9,6 +9,7 @@ export const Navigationbar = () => {
     <>
       <Navbar className='color-nav'>
         <div className='navbar-content'>
+          {/* <div className='oval'></div> */}
           <div className='navbar-logo-container'>
             <img src={logo} alt='logo' className='navbar-logo-image' />
           </div>
