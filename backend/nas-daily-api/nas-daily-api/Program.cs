@@ -11,6 +11,8 @@ builder.Services.AddScoped<IOASRepository, OASRepository>();
 builder.Services.AddScoped<IOASService, OASService>();
 builder.Services.AddScoped<INASRepository, NASRepository>();
 builder.Services.AddScoped<INASService, NASService>();
+builder.Services.AddScoped<IOfficeRepository, OfficeRepository>();
+builder.Services.AddScoped<IOfficeService, OfficeService>();
 builder.Services.AddHttpClient();
 
 // Register the controllers and enable API endpoints.

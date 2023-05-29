@@ -6,5 +6,6 @@
         public string? DatabaseName { get; set; }
         public string? OASCollectionName { get; set; }
         public string? NASCollectionName { get; set; }
+        public string? OfficeCollectionName { get; set; }
     }
 }
