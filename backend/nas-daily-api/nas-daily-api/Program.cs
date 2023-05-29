@@ -9,6 +9,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.Configure<DatabaseSetting>(builder.Configuration.GetSection("DatabaseSetting"));
 builder.Services.AddScoped<IOASRepository, OASRepository>();
 builder.Services.AddScoped<IOASService, OASService>();
+builder.Services.AddScoped<INASRepository, NASRepository>();
+builder.Services.AddScoped<INASService, NASService>();
 builder.Services.AddHttpClient();
 
 // Register the controllers and enable API endpoints.
