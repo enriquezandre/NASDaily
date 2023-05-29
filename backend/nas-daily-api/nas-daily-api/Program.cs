@@ -15,6 +15,8 @@ builder.Services.AddScoped<IOfficeRepository, OfficeRepository>();
 builder.Services.AddScoped<IOfficeService, OfficeService>();
 builder.Services.AddScoped<ISuperiorRepository, SuperiorRepository>();
 builder.Services.AddScoped<ISuperiorService, SuperiorService>();
+builder.Services.AddScoped<IScheduleRepository, ScheduleRepository>();
+builder.Services.AddScoped<IScheduleService, ScheduleService>();
 builder.Services.AddHttpClient();
 
 // Register the controllers and enable API endpoints.

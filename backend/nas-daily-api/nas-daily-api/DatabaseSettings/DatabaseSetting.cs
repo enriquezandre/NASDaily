@@ -8,5 +8,6 @@
         public string? NASCollectionName { get; set; }
         public string? OfficeCollectionName { get; set; }
         public string? SuperiorCollectionName { get; set; }
+        public string? ScheduleCollectionName { get; set; }
     }
 }
