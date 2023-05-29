@@ -3,6 +3,7 @@ import Button from '../Components/Common/Buttons/Button.jsx'
 import '../Pages/Attendance.css'
 
 export const Attendance = () => {
+    const [searchTerm, setSearchTerm] = useState('');
     return (
         <>
             <div>
@@ -40,7 +41,23 @@ export const Attendance = () => {
                     />
                 </div>
                 <div className='row'>
-                    
+                    <div className='heading'>
+                        <p className='name'>Belderol, Kaye Cassandra</p>
+                        <form className='searchBar' onSubmit={null}>
+                            <input
+                                type='text'
+                                placeholder='Search...'
+                                value={searchTerm}
+                                onChange={(e) => setSearchTerm(e.target.value)}
+                            />
+                            <button type='submit'>
+                                <i className='material-icons search-icon'>search</i>
+                            </button>
+                        </form>
+                    </div>
+                    <div className='data'>
+                        <p>Test Here!</p>
+                    </div>
                 </div>
             </div>
         </>
