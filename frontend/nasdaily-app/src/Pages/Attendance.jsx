@@ -4,6 +4,7 @@ import '../Pages/Attendance.css'
 
 export const Attendance = () => {
     const [searchTerm, setSearchTerm] = useState('');
+    const displayMessage = "No information to display. Please click on the search bar to access information of a NAS.";
     return (
         <>
             <div>
@@ -40,6 +41,7 @@ export const Attendance = () => {
                         name={"NAS Master List"}
                     />
                 </div>
+                
                 <div className='row'>
                     <div className='heading'>
                         <p className='name'>Belderol, Kaye Cassandra</p>
@@ -56,7 +58,7 @@ export const Attendance = () => {
                         </form>
                     </div>
                     <div className='data'>
-                        <p>Test Here!</p>
+                        <p className='displayNoInfo'>{displayMessage}</p>
                     </div>
                 </div>
             </div>

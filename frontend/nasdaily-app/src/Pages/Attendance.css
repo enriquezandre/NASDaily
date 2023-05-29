@@ -53,3 +53,9 @@ input{
     border: none;
     cursor: pointer;
 }
+
+.displayNoInfo{
+    margin: 200px auto;
+    text-align: center;
+    color: rgba(0, 0, 0, 0.51);
+}
