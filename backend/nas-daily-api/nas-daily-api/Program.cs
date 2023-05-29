@@ -13,6 +13,8 @@ builder.Services.AddScoped<INASRepository, NASRepository>();
 builder.Services.AddScoped<INASService, NASService>();
 builder.Services.AddScoped<IOfficeRepository, OfficeRepository>();
 builder.Services.AddScoped<IOfficeService, OfficeService>();
+builder.Services.AddScoped<ISuperiorRepository, SuperiorRepository>();
+builder.Services.AddScoped<ISuperiorService, SuperiorService>();
 builder.Services.AddHttpClient();
 
 // Register the controllers and enable API endpoints.

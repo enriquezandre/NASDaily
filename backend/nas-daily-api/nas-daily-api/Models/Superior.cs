@@ -2,5 +2,7 @@
 {
     public class Superior
     {
+        public string? SuperiorId { get; set; }
+        public string? SuperiorName { get; set; }
     }
 }

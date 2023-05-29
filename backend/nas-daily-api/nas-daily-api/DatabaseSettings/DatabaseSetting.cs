@@ -7,5 +7,6 @@
         public string? OASCollectionName { get; set; }
         public string? NASCollectionName { get; set; }
         public string? OfficeCollectionName { get; set; }
+        public string? SuperiorCollectionName { get; set; }
     }
 }
