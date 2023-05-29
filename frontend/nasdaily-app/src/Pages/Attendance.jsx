@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import Button from '../Components/Common/Buttons/Button.jsx'
+import '../Pages/Attendance.css'
 
 export const Attendance = () => {
     return (
