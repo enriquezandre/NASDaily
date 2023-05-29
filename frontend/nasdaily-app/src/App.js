@@ -5,6 +5,7 @@ import { Login } from "./Pages/Login";
 import { OASProfile } from "./Pages/OASProfile";
 import { Attendance } from "./Pages/Attendance"
 import Timeinout from "./Pages/Timeinout";
+import NASActivities from "./Pages/NASActivities";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Login/>}/>
         <Route path="/timeinout" element={<Timeinout/>}/>
+        <Route path="/NASActivities" element={<NASActivities/>}/>
         <Route path="/oasprofile" element={<OASProfile/>} />
         <Route path="/attendance" element={<Attendance/>} />
       </Routes>

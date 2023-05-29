@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import './Timeinout.css';
 import Header from '../Components/Header';
-import GLE from '../images/glebuilding.png';
-import TimeInModal from '../Components/TimeInModal.js';
-import TimeOutModal from '../Components/TimeOutModal.js'
-import Welcome from '../Components/Welcome.js';
+import GLE from '../images/glebuilding-edited.png';
+import TimeInModal from '../Components/TimeInModal';
+import TimeOutModal from '../Components/TimeOutModal'
+import Welcome from '../Components/Welcome';
 
 function Timeinout() {
   const [buttonText, setButtonText] = useState('Time In');
