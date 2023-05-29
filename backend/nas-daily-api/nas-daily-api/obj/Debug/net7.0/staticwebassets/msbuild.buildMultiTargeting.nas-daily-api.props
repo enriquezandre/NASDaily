@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\nas-daily-api.props" />
+</Project>
