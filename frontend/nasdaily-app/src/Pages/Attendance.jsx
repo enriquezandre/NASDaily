@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import Button from '../Components/Common/Buttons/Button.jsx'
 import '../Pages/Attendance.css'
+import Header from '../Components/Header.js'
 
 export const Attendance = () => {
     const [searchTerm, setSearchTerm] = useState('');
@@ -8,7 +9,8 @@ export const Attendance = () => {
     return (
         <>
             <div>
-                <br />
+                <Header username={"OAS"} onLogout={null}/>
+
                 <div className='menuNav'>
                     <Button
                         style={"yellow-button"}
