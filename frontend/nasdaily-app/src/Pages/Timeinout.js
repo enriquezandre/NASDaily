@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './Timeinout.css';
 import Header from '../Components/Header';
-import GLE from '../images/glebuilding.png';
+import GLE from '../images/glebuilding-edited.png';
 import TimeInModal from '../Components/TimeInModal';
 import TimeOutModal from '../Components/TimeOutModal'
 import Welcome from '../Components/Welcome';

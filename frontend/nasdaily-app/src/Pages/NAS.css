@@ -1,0 +1,77 @@
+@import url('https://fonts.googleapis.com/css2?family=Barlow:wght@400;500&display=swap');
+
+.nasactivity-main-container{
+    height: 100%;
+    width: 100%;
+}
+
+.nasmenu-button-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 1.5%;
+  }
+
+.nasbtn-menu{
+    background-color: #FFDD5A;
+    color: #8A353C;
+    border: none;
+    padding: 0.3%;
+    width: 17rem;
+    border-radius: 5px;
+    font-family: 'Barlow', sans-serif;
+}
+
+.nasbtn-menu:hover,
+.nasbtn-menu:focus{
+    background-color: #8A353C;
+    color: #FFDD5A;
+    font-weight: 500;
+}
+
+.activities-container{
+    margin-left: 1.5%;
+    margin-right: 1.5%;
+    border: 2px solid rgb(188, 188, 188);
+    border-radius: 10px;
+    height: 63vh;
+    width: auto;
+}
+
+.nas-details{
+    font-family: 'Barlow', sans-serif;
+    color: #8A353C;
+    font-weight: 900;
+    margin: 1%;
+}
+
+#month-dropdown {
+    background-color: #ffffff;
+    color: #8A353C;
+    border: 1px solid gray;
+    text-align: left;
+    padding: 0.3%;
+    width: 10rem;
+    border-radius: 5px;
+    font-family: 'Barlow', sans-serif;
+    font-weight: 900;
+    position: relative;
+  }
+  
+  #month-dropdown::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    border-width: 5px 5px 0;
+    border-color: #8A353C transparent transparent;
+    border-style: solid;
+    pointer-events: none;
+  }
+
+  .activities-summary{
+    padding: 1.5%;
+    font-family: 'Barlow', sans-serif;
+    color: #8A353C;
+    font-weight: 900;
+  }
