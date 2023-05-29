@@ -9,8 +9,15 @@
     margin: 5px 10px;
 }
 
-.yellow-button:hover{
+.yellow-button:hover,
+.red-button{
     background-color: #8A353C;
     color: #E9C434;
     font-weight: bold;
+    border: none;
+    border-radius: 10px;
+    width: 180px;
+    height: 45px;
+    text-transform: uppercase;
+    margin: 5px 10px;
 }

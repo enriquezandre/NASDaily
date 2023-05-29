@@ -2,7 +2,8 @@ import React from "react";
 import { Routes, Route } from 'react-router-dom';
 import { Navigationbar } from "./Components/Navigationbar";
 import { Login } from "./Pages/Login";
-import { Attendance } from "./Pages/Attendance";
+import { OASProfile } from "./Pages/OASProfile";
+import { Attendance } from "./Pages/Attendance"
 import Timeinout from "./Pages/Timeinout";
 
 function App() {
@@ -12,7 +13,8 @@ function App() {
       <Routes>
         <Route path="/" element={<Login/>}/>
         <Route path="/timeinout" element={<Timeinout/>}/>
-        <Route path="/attendance" element={<Attendance/>}/>
+        <Route path="/oasprofile" element={<OASProfile/>} />
+        <Route path="/attendance" element={<Attendance/>} />
       </Routes>
     </>
   );
