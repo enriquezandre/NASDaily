@@ -7,7 +7,10 @@ namespace nas_daily_api.Services
         OASDto GetOASByUserId(string userId);
         OASDto GetOASByName(string name);
         string DeleteOASByUserId(string userId);
-        string DelteOASByName(string name);
+        string DeleteOASByName(string name);
+        List<OASDto> GetAllOAS();
+        OASDto CreateOAS(OASDto oas);
+        void UpdateOAS(OASDto oas, string userId);
 
         // Add more method signatures as per your requirements
     }

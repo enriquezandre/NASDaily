@@ -65,6 +65,11 @@ namespace nas_daily_api.Repositories
             return oas;
         }
 
+        public List<OASDto> GetAllOAS()
+        {
+            return _oasCollection.Find(_ => true).ToList();
+        }
+
         // Add more methods as per your requirements
     }
 }
