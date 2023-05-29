@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "XWcIUMx5ueLPq4PHVypIgIkUBcZCRN38QxAr4SnpszQ=",
+  "Source": "nas-daily-api",
+  "BasePath": "_content/nas-daily-api",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

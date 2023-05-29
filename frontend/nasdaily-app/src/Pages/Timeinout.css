@@ -26,3 +26,10 @@
     border-radius: 5px;
     cursor: pointer;
   }
+
+  .welcome {
+    position: absolute;
+    top: 150px;
+    left: 10px;
+    background-color: black;
+  }
