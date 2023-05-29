@@ -1,12 +1,17 @@
 import React from "react";
+import { Routes, Route } from 'react-router-dom';
 import { Navigationbar } from "./Components/Navigationbar";
 import { Login } from "./Pages/Login";
+import Timeinout from "./Pages/Timeinout";
 
 function App() {
   return (
     <>
       <Navigationbar/>
-      <Login/>
+      <Routes>
+        <Route path="/" element={<Login/>}/>
+        <Route path="/timeinout" element={<Timeinout/>}/>
+      </Routes>
     </>
   );
 }
