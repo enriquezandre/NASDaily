@@ -15,8 +15,8 @@ function App() {
         <Route path="/" element={<Login/>}/>
         <Route path="/timeinout" element={<Timeinout/>}/>
         <Route path="/NASActivities" element={<NASActivities/>}/>
-        <Route path="/oasprofile" element={<OASProfile/>} />
-        <Route path="/attendance" element={<Attendance/>} />
+        <Route path="/OASprofile" element={<OASProfile/>} />
+        <Route path="/OASattendance" element={<Attendance/>} />
       </Routes>
     </>
   );
