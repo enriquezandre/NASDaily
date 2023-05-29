@@ -1,0 +1,12 @@
+.image-container {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: auto;
+  }
+
+.image-size {
+    width: 90%;
+    height: 60%;
+    padding: 20px;
+  }
