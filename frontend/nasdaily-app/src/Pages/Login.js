@@ -7,7 +7,7 @@ export const Login = () => {
         <>
             <div className='center-container'>
                 <div className='main-container'>
-                    <div className='image-container'>
+                    <div className='login-image-container'>
                         <img src={bg} alt='glebuilding' className='bg-container' />
                     </div>
                     <div className='text-container'>
