@@ -17,6 +17,9 @@ builder.Services.AddScoped<ISuperiorRepository, SuperiorRepository>();
 builder.Services.AddScoped<ISuperiorService, SuperiorService>();
 builder.Services.AddScoped<IScheduleRepository, ScheduleRepository>();
 builder.Services.AddScoped<IScheduleService, ScheduleService>();
+builder.Services.AddScoped<ILogRepository, LogRepository>();
+builder.Services.AddScoped<ILogService, LogService>();
+
 builder.Services.AddHttpClient();
 
 // Register the controllers and enable API endpoints.

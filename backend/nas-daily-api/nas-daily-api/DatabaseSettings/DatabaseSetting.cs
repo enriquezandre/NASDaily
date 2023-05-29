@@ -9,5 +9,6 @@
         public string? OfficeCollectionName { get; set; }
         public string? SuperiorCollectionName { get; set; }
         public string? ScheduleCollectionName { get; set; }
+        public string? LogCollectionName { get; set; }
     }
 }
