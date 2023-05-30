@@ -75,13 +75,17 @@ export const Attendance = () => {
                         <label className='labelDropDown'>
                             SEMESTER:
                             <select>
-                                <option value="semester">2nd Semester 2023-2024</option>
+                                <option value="semester">2nd Semester 2022-2023</option>
                             </select>
                         </label>
                         <label className='labelDropDown'>
                             MONTH:
                             <select>
                                 <option value="month">January</option>
+                                <option value="month">February</option>
+                                <option value="month">March</option>
+                                <option value="month">April</option>
+                                <option value="month">May</option>
                             </select>
                         </label>
                     </div>
