@@ -70,6 +70,22 @@ export const Attendance = () => {
                             </button>
                         </form>
                     </div>
+
+                    <div className='dropDownButtons'>
+                        <label className='labelDropDown'>
+                            SEMESTER:
+                            <select>
+                                <option value="semester">2nd Semester 2023-2024</option>
+                            </select>
+                        </label>
+                        <label className='labelDropDown'>
+                            MONTH:
+                            <select>
+                                <option value="month">January</option>
+                            </select>
+                        </label>
+                    </div>
+                    
                     <div className='data'>
                         <SummaryAttendanceOAS
                             check={check}
