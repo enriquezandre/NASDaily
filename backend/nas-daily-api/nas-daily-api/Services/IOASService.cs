@@ -11,7 +11,5 @@ namespace nas_daily_api.Services
         List<OASDto> GetAllOAS();
         OASDto CreateOAS(OASDto oas);
         void UpdateOAS(OASDto oas, string userId);
-
-        // Add more method signatures as per your requirements
     }
 }

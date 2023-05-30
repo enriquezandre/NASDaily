@@ -23,7 +23,7 @@ namespace nas_daily_api.Services
             return _oasRepository.DeleteByUserId(userId);
         }
 
-        public string DelteOASByName(string name)
+        public string DeleteOASByName(string name)
         {
             return _oasRepository.DeleteByName(name);
         }
@@ -45,7 +45,7 @@ namespace nas_daily_api.Services
 
         public void UpdateOAS(OASDto oas, string userId)
         {
-            return _oasRepository.Update(oas, userId);
+             _oasRepository.Update(oas, userId);
         }
 
         // Add more methods as per your requirements

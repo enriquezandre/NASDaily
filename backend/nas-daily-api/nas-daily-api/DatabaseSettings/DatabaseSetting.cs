@@ -11,5 +11,7 @@
         public string? ScheduleCollectionName { get; set; }
         public string? LogCollectionName { get; set; }
         public string? TasksCollectionName { get; set; }
+        public string? AbsenceCollectionName { get; set; }
+        public string? AttendanceSummaryCollectionName { get; set; }
     }
 }
