@@ -33,7 +33,7 @@ p {
     text-transform: uppercase;
 }
 
-input{
+.searchBarInput{
     width: 250px;
     background-color: transparent;
     border: none;

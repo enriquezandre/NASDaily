@@ -1,0 +1,24 @@
+table{
+    width: 75%;
+}
+
+td,th{
+    border: 1px solid #000000;
+    padding: 5px;
+}
+
+.monthly:nth-child(odd){
+    width: 25%;
+}
+.monthly:nth-child(even){
+    width: 15%;
+    text-align: center;
+    color: red;
+}
+
+.tableData{
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

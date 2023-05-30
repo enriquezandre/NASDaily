@@ -2,10 +2,18 @@ import React, { useState } from 'react'
 import Button from '../Components/Common/Buttons/Button.jsx'
 import '../Pages/Attendance.css'
 import Header from '../Components/Header.js'
+import SummaryAttendanceOAS from '../Components/Common/Tables/SummaryAttendanceOAS.jsx'
 
 export const Attendance = () => {
     const [searchTerm, setSearchTerm] = useState('');
-    const displayMessage = "No information to display. Please click on the search bar to access information of a NAS.";
+    const [fullName, setFullName] = useState('');
+
+    const handleSearch = (e) => {
+        e.preventDefault();
+        
+        setFullName("BELDEROL, KAYE CASSANDRA");
+    }
+
     return (
         <>
             <div>
@@ -46,9 +54,10 @@ export const Attendance = () => {
                 
                 <div className='row'>
                     <div className='heading'>
-                        <p className='name'>Belderol, Kaye Cassandra</p>
-                        <form className='searchBar' onSubmit={null}>
+                        <p className='name'>BELDEROL, KAYE CASSANDRA</p>
+                        <form className='searchBar' onSubmit={handleSearch}>
                             <input
+                                className='searchBarInput'
                                 type='text'
                                 placeholder='Search...'
                                 value={searchTerm}
@@ -60,7 +69,14 @@ export const Attendance = () => {
                         </form>
                     </div>
                     <div className='data'>
-                        <p className='displayNoInfo'>{displayMessage}</p>
+                        <SummaryAttendanceOAS
+                            totalLates={2}
+                            unexcusedAbsent={1}
+                            excusedAbsent={1}
+                            tenMinLate={1}
+                            fortyFiveMinLate={1}
+                            ftp={1} 
+                        />
                     </div>
                 </div>
             </div>
