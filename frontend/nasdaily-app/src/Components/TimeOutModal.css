@@ -1,0 +1,19 @@
+.timeoutmodal-btn{
+    background-color: #8a353c;
+    border: #8a353c;
+}
+
+.timeoutmodal-btn:hover{
+    background-color: #808080;
+    border: #808080;
+}
+
+.text-area{
+    opacity: 0.9;
+}
+
+.timeoutmodal-container {
+    background-image: url('../images/CIT.png');
+    background-size: cover;
+    background-position: center;
+  }
