@@ -7,11 +7,13 @@ import SummaryAttendanceOAS from '../Components/Common/Tables/SummaryAttendanceO
 export const Attendance = () => {
     const [searchTerm, setSearchTerm] = useState('');
     const [fullName, setFullName] = useState('');
+    const [check, setCheck] = useState(false);
 
     const handleSearch = (e) => {
         e.preventDefault();
         
         setFullName("BELDEROL, KAYE CASSANDRA");
+        setCheck(true)
     }
 
     return (
@@ -54,7 +56,7 @@ export const Attendance = () => {
                 
                 <div className='row'>
                     <div className='heading'>
-                        <p className='name'>BELDEROL, KAYE CASSANDRA</p>
+                        <p className='name'>{fullName}</p>
                         <form className='searchBar' onSubmit={handleSearch}>
                             <input
                                 className='searchBarInput'
@@ -70,6 +72,7 @@ export const Attendance = () => {
                     </div>
                     <div className='data'>
                         <SummaryAttendanceOAS
+                            check={check}
                             totalLates={2}
                             unexcusedAbsent={1}
                             excusedAbsent={1}

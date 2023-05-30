@@ -3,9 +3,9 @@ import MonthlySummaryAbsent from './MonthlySummaryAbsent';
 import WeeklySummaryAttendance from './WeeklySummaryAttendance';
 import './SummaryAttendanceOAS.css'
 
-const SummaryAttendanceOAS = ({ totalLates, unexcusedAbsent, excusedAbsent, tenMinLate, fortyFiveMinLate, ftp }) => {
+const SummaryAttendanceOAS = ({ check, totalLates, unexcusedAbsent, excusedAbsent, tenMinLate, fortyFiveMinLate, ftp }) => {
     const attend = [
-        { 
+        {
             date: "05/30/2023",
             timein: "08:00 AM",
             timeout: "08:00 AM",
@@ -13,7 +13,7 @@ const SummaryAttendanceOAS = ({ totalLates, unexcusedAbsent, excusedAbsent, tenM
             skillsLearned: "Dummy Text",
             valuesLearned: "Dummy Text"
         },
-        { 
+        {
             date: "05/30/2023",
             timein: "08:00 AM",
             timeout: "08:00 AM",
@@ -24,28 +24,32 @@ const SummaryAttendanceOAS = ({ totalLates, unexcusedAbsent, excusedAbsent, tenM
     ]
     return (
         <>
+            {check ? (
             <div>
                 <div className='monthlySummaryOfAbsences'>
                     <h4 className='title'>MONTHLY SUMMARY OF ABSENCES/LATE</h4>
                     <MonthlySummaryAbsent
-                            totalLates={2}
-                            unexcusedAbsent={1}
-                            excusedAbsent={1}
-                            tenMinLate={1}
-                            fortyFiveMinLate={1}
-                            ftp={1} 
+                        totalLates={2}
+                        unexcusedAbsent={1}
+                        excusedAbsent={1}
+                        tenMinLate={1}
+                        fortyFiveMinLate={1}
+                        ftp={1}
                     />
                 </div>
 
-                <br/>
+                <br />
 
                 <div className='weeklySummaryOfAttendance'>
                     <h4 className='title'>WEEKLY ATTENDANCE</h4>
-                    <WeeklySummaryAttendance attend={attend}/>
+                    <WeeklySummaryAttendance attend={attend} />
                 </div>
 
-                <br/>
+                <br />
             </div>
+            ) : (
+                <p className='errorMessage'>No information to display. Please click on the search bar to access information of a NAS.</p>
+            )}
         </>
     )
 };

@@ -4,3 +4,9 @@
     color: #8A353C;
     margin: 20px auto;
 }
+
+.errorMessage{
+    margin: 150px auto;
+    text-align: center;
+    color: rgba(0, 0, 0, 0.51);
+}
