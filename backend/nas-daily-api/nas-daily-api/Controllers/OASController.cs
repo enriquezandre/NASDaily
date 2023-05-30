@@ -6,7 +6,7 @@ namespace nas_daily_api.Controllers
 {
     [Route("api/oas")]
     [ApiController]
-    public class OASController : ControllerBase, IOASController
+    public class OASController : ControllerBase
     {
         private readonly IOASService _oasService;
 
@@ -24,7 +24,5 @@ namespace nas_daily_api.Controllers
 
             return Ok(oas);
         }
-
-        // Add more API endpoints as per your requirements
     }
 }

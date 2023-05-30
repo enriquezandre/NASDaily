@@ -1,7 +1,16 @@
-﻿namespace nas_daily_api.Models
+﻿using MongoDB.Bson.Serialization.Attributes;
+using MongoDB.Bson;
+using nas_daily_api.Models;
+
+namespace nas_daily_api.Dtos
 {
-    public class NAS
+    public class NASDto
     {
+        [BsonId]
+        [BsonRepresentation(BsonType.ObjectId)]
+        public string? Id { get; set; }
+
+        [BsonElement("NASId")]
         public string? NASId { get; set; }
         public string? Password { get; set; }
         public string? Name { get; set; }

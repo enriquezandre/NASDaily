@@ -9,6 +9,20 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.Configure<DatabaseSetting>(builder.Configuration.GetSection("DatabaseSetting"));
 builder.Services.AddScoped<IOASRepository, OASRepository>();
 builder.Services.AddScoped<IOASService, OASService>();
+builder.Services.AddScoped<INASRepository, NASRepository>();
+builder.Services.AddScoped<INASService, NASService>();
+builder.Services.AddScoped<IOfficeRepository, OfficeRepository>();
+builder.Services.AddScoped<IOfficeService, OfficeService>();
+builder.Services.AddScoped<ISuperiorRepository, SuperiorRepository>();
+builder.Services.AddScoped<ISuperiorService, SuperiorService>();
+builder.Services.AddScoped<IScheduleRepository, ScheduleRepository>();
+builder.Services.AddScoped<IScheduleService, ScheduleService>();
+builder.Services.AddScoped<ILogRepository, LogRepository>();
+builder.Services.AddScoped<ILogService, LogService>();
+builder.Services.AddScoped<ITasksRepository, TasksRepository>();
+builder.Services.AddScoped<ITasksService, TasksService>();
+
+
 builder.Services.AddHttpClient();
 
 // Register the controllers and enable API endpoints.
