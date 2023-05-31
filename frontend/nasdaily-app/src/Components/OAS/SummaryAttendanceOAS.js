@@ -4,7 +4,7 @@ import './SummaryAttendanceOAS.css';
 
 class SummaryAttendanceOAS extends Component {
   render() {
-    const { check, totalLates, unexcusedAbsent, excusedAbsent, tenMinLate, fortyFiveMinLate, ftp } = this.props;
+    const { check } = this.props;
 
     const attend = [
       {

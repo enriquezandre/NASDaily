@@ -105,12 +105,6 @@ export class OASAttendance extends Component {
           <div className='data'>
             <SummaryAttendanceOAS
               check={check}
-              totalLates={2}
-              unexcusedAbsent={1}
-              excusedAbsent={1}
-              tenMinLate={1}
-              fortyFiveMinLate={1}
-              ftp={1}
             />
           </div>
         </div>
