@@ -8,41 +8,41 @@ namespace nas_daily_api.Repositories
 {
     public class AttendanceSummaryRepository : IAttendanceSummaryRepository
     {
-        private readonly IMongoCollection<AttendanceSummaryDto> _attendanceSummaryCollection;
+        private readonly IMongoCollection<AttendanceSummary> _attendanceSummaryCollection;
 
         public AttendanceSummaryRepository(IOptions<DatabaseSetting> options)
         {
             var mongoClient = new MongoClient(options.Value.ConnectionString);
             _attendanceSummaryCollection = mongoClient.GetDatabase(options.Value.DatabaseName)
-                .GetCollection<AttendanceSummaryDto>(options.Value.AttendanceSummaryCollectionName);
+                .GetCollection<AttendanceSummary>(options.Value.AttendanceSummaryCollectionName);
         }
 
-        public AttendanceSummaryDto Create(AttendanceSummaryDto attendanceSummary)
+        public async Task<AttendanceSummary> Create(AttendanceSummary attendanceSummary)
         {
-            _attendanceSummaryCollection.InsertOne(attendanceSummary);
+            await _attendanceSummaryCollection.InsertOneAsync(attendanceSummary);
             return attendanceSummary;
         }
 
-        public string DeleteByAttendanceSummaryId(string attendanceSummaryId)
+        public async Task<string> DeleteByAttendanceSummaryId(string attendanceSummaryId)
         {
-            _attendanceSummaryCollection.DeleteOne(attendanceSummaryId); 
+            await _attendanceSummaryCollection.DeleteOneAsync(attendanceSummaryId); 
             return attendanceSummaryId;
         }
 
-        public List<AttendanceSummaryDto> GetAllAttendanceSummary()
+        public async Task<IEnumerable<AttendanceSummary>> GetAllAttendanceSummary()
         {
-            return _attendanceSummaryCollection.Find(_ => true).ToList();
+            return await _attendanceSummaryCollection.Find(_ => true).ToListAsync();
         }
 
-        public AttendanceSummaryDto GetByAttendanceSummaryId(string attendanceSummaryId)
+        public async Task<AttendanceSummary> GetByAttendanceSummaryId(string attendanceSummaryId)
         {
-            return _attendanceSummaryCollection.Find(absence => absence.AttendanceSummaryId == attendanceSummaryId).FirstOrDefault();
+            return await _attendanceSummaryCollection.Find(absence => absence.AttendanceSummaryId == attendanceSummaryId).FirstOrDefaultAsync();
         }
 
-        public AttendanceSummaryDto Update(AttendanceSummaryDto attendanceSummary, string attendanceSummaryId)
+        public async Task<AttendanceSummary> Update(AttendanceSummary attendanceSummary, string attendanceSummaryId)
         {
-            var filter = Builders<AttendanceSummaryDto>.Filter.Eq("AttendanceSummaryId", attendanceSummaryId);
-            _attendanceSummaryCollection.ReplaceOne(filter, attendanceSummary);
+            var filter = Builders<AttendanceSummary>.Filter.Eq("AttendanceSummaryId", attendanceSummaryId);
+            await _attendanceSummaryCollection.ReplaceOneAsync(filter, attendanceSummary);
 
             return attendanceSummary;
         }

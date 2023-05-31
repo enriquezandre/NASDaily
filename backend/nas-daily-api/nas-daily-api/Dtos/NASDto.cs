@@ -18,5 +18,9 @@ namespace nas_daily_api.Dtos
         public string? SchoolYear { get; set; }
         public string? Office { get; set; }
         public List<LogDto> Logs { get; set; } = new List<LogDto>();
+        public List<Schedule> Schedules { get; set; } = new List<Schedule>();
+        public List<Absence>? Absences { get; set; } = new List<Absence>();
+        public List<AttendanceSummary> AttendanceSummaries { get; set; } = new List<AttendanceSummary>();
+        public List<EvaluationResult> EvaluationResults { get; set; } = new List<EvaluationResult>();
     }
 }

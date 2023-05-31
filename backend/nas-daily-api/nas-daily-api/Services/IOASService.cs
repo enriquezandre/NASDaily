@@ -4,12 +4,12 @@ namespace nas_daily_api.Services
 {
     public interface IOASService
     {
-        OASDto GetOASByUserId(string userId);
-        OASDto GetOASByName(string name);
-        string DeleteOASByUserId(string userId);
-        string DeleteOASByName(string name);
-        List<OASDto> GetAllOAS();
-        OASDto CreateOAS(OASDto oas);
-        void UpdateOAS(OASDto oas, string userId);
+        Task<OASDto?> GetOASByUserId(string userId);
+        Task<OASDto?> GetOASByName(string name);
+        Task<string> DeleteOASByUserId(string userId);
+        Task<string> DeleteOASByName(string name);
+        Task<IEnumerable<OASDto>> GetAllOAS();
+        Task<OASDto> CreateOAS(OASCreationDto oas);
+        Task UpdateOAS(OASUpdateDto oas, string userId);
     }
 }

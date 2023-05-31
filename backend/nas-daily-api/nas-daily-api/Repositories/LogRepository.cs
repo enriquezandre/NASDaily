@@ -2,6 +2,7 @@
 using MongoDB.Bson;
 using MongoDB.Driver;
 using nas_daily_api.DatabaseSettings;
+using nas_daily_api.Dtos;
 using nas_daily_api.Models;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -66,6 +67,14 @@ namespace nas_daily_api.Repositories
             };
 
             await _taskCollection.InsertOneAsync(task);
+        }
+
+        public async Task<Log> UpdateLog(string logId, Log log)
+        {
+            var filter = Builders<Log>.Filter.Eq("LogId", logId);
+            await _logCollection.ReplaceOneAsync(filter, log);
+
+            return log;
         }
     }
 }

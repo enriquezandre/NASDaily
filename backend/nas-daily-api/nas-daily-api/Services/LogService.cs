@@ -59,5 +59,11 @@ namespace nas_daily_api.Services
             await _nasRepository.UpdateNAS(userName, nas);
             await _logRepository.CreateLog(log);
         }
+
+        public async Task UpdateLog(string userName, LogUpdateDto log)
+        {
+            var logModel = _mapper.Map<Log>(log);
+            await _logRepository.UpdateLog(userName, logModel);
+        }
     }
 }

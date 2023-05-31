@@ -9,16 +9,18 @@ namespace nas_daily_api.Controllers
     public class OASController : ControllerBase
     {
         private readonly IOASService _oasService;
+        private readonly ILogger<OASController> _logger;
 
-        public OASController(IOASService oasService)
+        public OASController(IOASService oasService, ILogger<OASController> logger)
         {
             _oasService = oasService;
+            _logger = logger;   
         }
 
-        [HttpGet("{userId}")]
-        public IActionResult GetOASByOASId(string userId)
+        [HttpGet("{oasId}")]
+        public async Task<IActionResult> GetOASByOASId(string oasId)
         {
-            var oas = _oasService.GetOASByUserId(userId);
+            var oas = await _oasService.GetOASByUserId(oasId);
             if (oas == null)
                 return NotFound();
 
@@ -26,37 +28,36 @@ namespace nas_daily_api.Controllers
         }
 
         [HttpGet]
-        public IActionResult GetAllOAS()
+        public async Task<IActionResult> GetAllOAS()
         {
-            var allOAS = _oasService.GetAllOAS();
-            return Ok(allOAS);
+            var alloas = await _oasService.GetAllOAS();
+            return Ok(alloas);
         }
 
         [HttpPost]
-        public IActionResult CreateOAS(OASDto oas)
+        public async Task<IActionResult> Createoas(OASCreationDto oas)
         {
-            var createdOAS = _oasService.CreateOAS(oas);
-            return CreatedAtAction(nameof(GetOASByOASId), new { oasId = createdOAS.UserId }, createdOAS);
+            var createdoas = await _oasService.CreateOAS(oas);
+            return CreatedAtAction(nameof(GetOASByOASId), new { OasId = createdoas.OASId }, createdoas);
         }
 
         [HttpPut("{oasId}")]
-        public IActionResult Updateoas(OASDto oas, string oasId)
+        public async Task<IActionResult> Updateoas(OASUpdateDto oas, string oasId)
         {
-            _oasService.UpdateOAS(oas, oasId);
+            await _oasService.UpdateOAS(oas, oasId);
             return NoContent();
         }
 
         [HttpDelete("{oasId}")]
-        public IActionResult DeleteOAS(string oasId)
+        public async Task<IActionResult> DeleteOASByOASId(string oasId)
         {
-            _oasService.DeleteOASByUserId(oasId);
+            await _oasService.DeleteOASByUserId(oasId);
             return NoContent();
         }
-
         [HttpDelete("{name}")]
-        public IActionResult DeleteOASByName(string name)
+        public async Task<IActionResult> DeleteOASByOASName(string name)
         {
-            _oasService.DeleteOASByName(name);
+            await _oasService.DeleteOASByName(name);
             return NoContent();
         }
     }

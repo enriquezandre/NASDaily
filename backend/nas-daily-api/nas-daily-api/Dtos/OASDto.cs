@@ -9,8 +9,8 @@ namespace nas_daily_api.Dtos
         [BsonRepresentation(BsonType.ObjectId)]
         public string? Id { get; set; }
 
-        [BsonElement("UserId")]
-        public string? UserId { get; set; }
+        [BsonElement("OASId")]
+        public string? OASId { get; set; }
 
         public string? Password { get; set; }
         public string? Name { get; set; }
