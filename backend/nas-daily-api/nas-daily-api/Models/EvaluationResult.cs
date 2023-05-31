@@ -6,6 +6,7 @@
         public string? TimeKeepingStatus { get; set; }
         public string? AllowedForEnrollment { get; set; }
         public string? UnitsAllowed { get; set; }
+        public NAS Nas { get; set; } = new NAS();
 
     }
 }

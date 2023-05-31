@@ -1,5 +1,6 @@
 ﻿using MongoDB.Bson.Serialization.Attributes;
 using MongoDB.Bson;
+using nas_daily_api.Models;
 
 namespace nas_daily_api.Dtos
 {
@@ -16,5 +17,6 @@ namespace nas_daily_api.Dtos
         public string? AttitudeAndWorkBehaviour { get; set; }
         public string? OverallAssessment { get; set; }
         public string? OverallRating { get; set; }
+        public Superior Superior { get; set; } = new Superior();
     }
 }

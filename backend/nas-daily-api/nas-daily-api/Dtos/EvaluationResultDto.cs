@@ -1,5 +1,6 @@
 ﻿using MongoDB.Bson.Serialization.Attributes;
 using MongoDB.Bson;
+using nas_daily_api.Models;
 
 namespace nas_daily_api.Dtos
 {
@@ -13,5 +14,6 @@ namespace nas_daily_api.Dtos
         public string? TimeKeepingStatus { get; set; }
         public string? AllowedForEnrollment { get; set; }
         public string? UnitsAllowed { get; set; }
+        public NAS Nas { get; set; } = new NAS();
     }
 }

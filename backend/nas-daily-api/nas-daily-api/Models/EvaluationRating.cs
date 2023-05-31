@@ -9,5 +9,6 @@
         public string? AttitudeAndWorkBehaviour { get; set; }
         public string? OverallAssessment { get; set; }
         public string? OverallRating { get; set; }
+        public Superior Superior { get; set; } = new Superior();
     }
 }
