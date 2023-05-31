@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import Button from '../Components/Common/Buttons/Button.jsx'
 import '../Pages/Attendance.css'
 import Header from '../Components/Header.js'
-import SummaryAttendanceOAS from '../Components/Common/Tables/SummaryAttendanceOAS.jsx'
+import SummaryAttendanceOAS from '../Components/OAS/SummaryAttendanceOAS.js'
 
 export const Attendance = () => {
     const [searchTerm, setSearchTerm] = useState('');

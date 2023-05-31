@@ -11,6 +11,12 @@
 
 .username {
     font-weight: bold;
+    font-size: 20px;
+}
+
+.no-underline{
+    text-decoration: none;
+    color: black;
 }
 
 .logout-button {

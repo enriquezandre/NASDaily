@@ -7,13 +7,9 @@ td,th{
     padding: 5px;
 }
 
-.monthly:nth-child(odd){
-    width: 25%;
-}
-.monthly:nth-child(even){
-    width: 15%;
+.weekly{
+    width: 12%;
     text-align: center;
-    color: red;
 }
 
 .tableData{

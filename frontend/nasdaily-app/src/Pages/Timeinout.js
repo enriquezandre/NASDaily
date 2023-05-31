@@ -1,34 +1,57 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import './Timeinout.css';
 import Header from '../Components/Header';
 import GLE from '../images/glebuilding-edited.png';
 import TimeInModal from '../Components/TimeInModal';
-import TimeOutModal from '../Components/TimeOutModal'
+import TimeOutModal from '../Components/TimeOutModal';
 import Welcome from '../Components/Welcome';
 
-function Timeinout() {
+const Timeinout = () => {
+  const { nasId } = useParams();
+  const [user, setUser] = useState(null);
   const [buttonText, setButtonText] = useState('Time In');
   const [timeInModalVisible, setTimeInModalVisible] = useState(false);
   const [timeOutModalVisible, setTimeOutModalVisible] = useState(false);
 
+  useEffect(() => {
+    const fetchUserData = async () => {
+      try {
+        const response = await fetch(`https://localhost:7047/api/nas/${nasId}`);
+        if (response.ok) {
+          const userData = await response.json();
+          setUser(userData);
+        } else {
+          throw new Error('Failed to fetch user data');
+        }
+      } catch (error) {
+        console.error('Error:', error);
+      }
+    };
+
+    fetchUserData();
+  }, [nasId]);
+
   const handleClick = () => {
     if (buttonText === 'Time In') {
       setButtonText('Time Out');
-      setTimeInModalVisible(true); // Show the modal
+      setTimeInModalVisible(true);
       setTimeOutModalVisible(false);
     } else {
       setButtonText('Time In');
-      setTimeInModalVisible(false); // Hide the modal
+      setTimeInModalVisible(false);
       setTimeOutModalVisible(true);
     }
   };
 
   return (
     <div>
-      <Header username="USERNAME" />
+      {user && (
+        <Header username={user.name} />
+      )}
       <div className="timeinout-image-container">
         <img src={GLE} alt="GLE" className="image-size" />
-        <Welcome className="welcome"/>
+        <Welcome className="welcome" />
         <button className="button" onClick={handleClick}>
           {buttonText}
         </button>
@@ -47,6 +70,6 @@ function Timeinout() {
       )}
     </div>
   );
-}
+};
 
 export default Timeinout;
