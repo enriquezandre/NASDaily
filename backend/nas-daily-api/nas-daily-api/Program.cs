@@ -23,6 +23,12 @@ builder.Services.AddScoped<ITasksRepository, TasksRepository>();
 builder.Services.AddScoped<ITasksService, TasksService>();
 builder.Services.AddScoped<IAbsenceRepository, AbsenceRepository>();
 builder.Services.AddScoped<IAbsenceService, AbsenceService>();
+builder.Services.AddScoped<IAttendanceSummaryRepository, AttendanceSummaryRepository>();
+builder.Services.AddScoped<IAttendanceSummaryService, AttendanceSummaryService>();
+builder.Services.AddScoped<IEvaluationResultRepository, EvaluationResultRepository>();
+builder.Services.AddScoped<IEvaluationResultService, EvaluationResultService>();
+builder.Services.AddScoped<IEvaluationRatingRepository, EvaluationRatingRepository>();
+builder.Services.AddScoped<IEvaluationRatingService, EvaluationRatingService>();
 
 builder.Services.AddHttpClient();
 
