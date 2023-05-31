@@ -21,7 +21,18 @@ namespace nas_daily_api.Services
         public async Task<NASDto> GetNASByNASId(string nasId)
         {
             var nas = await _nasRepository.GetByNASId(nasId);
-            return _mapper.Map<NASDto>(nas);
+
+            if (nas == null)
+                return null;
+
+            var nasDto = _mapper.Map<NASDto>(nas);
+
+            // Filter the Office, Tasks, and Logs based on the provided nasId
+            nasDto.Office = _mapper.Map<OfficeDto>(nas.Office);
+            nasDto.Tasks = _mapper.Map<List<TasksDto>>(nas.Tasks.Where(t => t.NASId == nasId));
+            nasDto.Logs = _mapper.Map<List<LogDto>>(nas.Logs.Where(l => l.NASId == nasId));
+
+            return nasDto;
         }
 
         public async Task<IEnumerable<NASDto>> GetAllNAS()
