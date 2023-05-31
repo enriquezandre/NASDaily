@@ -37,7 +37,7 @@ function NASActivities() {
           </div>
           <div className='result-container'>
             <div className='nas-details'>
-              <p>SCHOLAR NAME: {'BELDEROL, KAYE CASSANDRA'}, {'20-2615-260'}</p>
+              <p>SCHOLAR NAME: {user?.name}, {user?.nasId}</p>
                 <div>
                   <label>
                       MONTH:
