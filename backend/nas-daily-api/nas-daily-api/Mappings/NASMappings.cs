@@ -11,6 +11,7 @@ namespace nas_daily_api.Mappings
             CreateMap<NAS, NASDto>();
             CreateMap<NASDto, NAS>();
             CreateMap<NASCreationDto, NAS>();
+            CreateMap<NASUpdationDto, NAS>();
         }
     }
 }
