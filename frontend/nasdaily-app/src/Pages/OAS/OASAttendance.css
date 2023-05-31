@@ -1,6 +1,7 @@
 .menuNav{
     display: flex;
-    margin: 10px 0px 10px 20px;
+    justify-content: space-between;
+    margin: 10px 30px;
 }
 
 .row{

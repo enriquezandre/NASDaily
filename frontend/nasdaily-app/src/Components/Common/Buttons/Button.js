@@ -1,12 +1,16 @@
-import React from 'react'
-import '../Buttons/ButtonStyle.css'
+import React, { Component } from 'react';
+import '../Buttons/ButtonStyle.css';
 
-const Button = ({ style, onClick, name }) => {
+class Button extends Component {
+  render() {
+    const { style, onClick, name } = this.props;
+
     return (
-        <div>
-            <button className={style} onClick={onClick}> {name} </button>
-        </div>
+      <div>
+        <button className={style} onClick={onClick}>{name}</button>
+      </div>
     );
-};
+  }
+}
 
 export default Button;
