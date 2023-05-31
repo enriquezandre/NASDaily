@@ -8,10 +8,8 @@ namespace nas_daily_api.Models
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]
         public string? Id { get; set; }
-
-        [BsonElement("TaskId")]
         public string? TaskId { get; set; }
-        public string? Description { get; set; }
+        public string? Description { get; set;}
         public string? NASId { get; set; }
     }
 }

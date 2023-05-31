@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using nas_daily_api.Dtos;
 using nas_daily_api.Services;
+using System.Threading.Tasks;
 
 namespace nas_daily_api.Controllers
 {
@@ -18,8 +19,13 @@ namespace nas_daily_api.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateLog(LogDto log)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
             var createdLog = await _logService.CreateLog(log);
-            return CreatedAtAction(nameof(GetLogById), new { logId = createdLog.Id }, createdLog);
+            return CreatedAtAction(nameof(GetLogById), new { logId = createdLog.LogId }, createdLog);
         }
 
         [HttpGet("{logId}")]
