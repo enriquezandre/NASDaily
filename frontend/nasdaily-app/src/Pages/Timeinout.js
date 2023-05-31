@@ -8,7 +8,7 @@ import TimeOutModal from '../Components/TimeOutModal';
 import Welcome from '../Components/Welcome';
 
 const Timeinout = () => {
-  const { nasId } = useParams();
+  const { username } = useParams();
   const [user, setUser] = useState(null);
   const [buttonText, setButtonText] = useState('Time In');
   const [timeInModalVisible, setTimeInModalVisible] = useState(false);
@@ -17,7 +17,7 @@ const Timeinout = () => {
   useEffect(() => {
     const fetchUserData = async () => {
       try {
-        const response = await fetch(`https://localhost:7047/api/nas/${nasId}`);
+        const response = await fetch(`https://localhost:7047/api/nas/username/${username}`);
         if (response.ok) {
           const userData = await response.json();
           setUser(userData);
@@ -30,7 +30,7 @@ const Timeinout = () => {
     };
 
     fetchUserData();
-  }, [nasId]);
+  }, [username]);
 
   const handleClick = () => {
     if (buttonText === 'Time In') {
@@ -47,7 +47,7 @@ const Timeinout = () => {
   return (
     <div>
       {user && (
-        <Header username={user.name} />
+        <Header username={username} /> 
       )}
       <div className="timeinout-image-container">
         <img src={GLE} alt="GLE" className="image-size" />

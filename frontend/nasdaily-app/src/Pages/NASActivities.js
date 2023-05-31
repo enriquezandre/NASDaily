@@ -1,11 +1,33 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import Header from '../Components/Header'
 import './NAS.css';
 
 function NASActivities() {
+  const { username } = useParams();
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    const fetchUserData = async () => {
+      try {
+        const response = await fetch(`https://localhost:7047/api/nas/username/${username}`);
+        if (response.ok) {
+          const userData = await response.json();
+          setUser(userData);
+        } else {
+          throw new Error('Failed to fetch user data');
+        }
+      } catch (error) {
+        console.error('Error:', error);
+      }
+    };
+
+    fetchUserData();
+  }, [username]);
+
     return (
       <>
-        <Header username="USERNAME" />
+        <Header username={username} />
         <div className='nasactivity-main-container'>
           <div className='nasmenu-button-container'>
             <button className='nasbtn-menu'>PERSONAL INFORMATION</button>
@@ -15,7 +37,7 @@ function NASActivities() {
           </div>
           <div className='result-container'>
             <div className='nas-details'>
-              <p>SCHOLAR NAME: {'BELDEROL, KAYE CASSANDRA'}, {'20-2615-260'}</p>
+              <p>SCHOLAR NAME: {user?.name}, {user?.nasId}</p>
                 <div>
                   <label>
                       MONTH:
