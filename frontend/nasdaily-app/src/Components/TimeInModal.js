@@ -1,5 +1,6 @@
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
+import './TimeInModal.css'
 
 function TimeInModal(props) {
   return (
@@ -11,17 +12,16 @@ function TimeInModal(props) {
     >
       <Modal.Header closeButton>
         <Modal.Title id="contained-modal-title-vcenter">
-          Modal heading
+          Status
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        <h4>i</h4>
         <p>
-          Timed in successfully!
+          Timed in <b>successfully!</b>
         </p>
       </Modal.Body>
       <Modal.Footer>
-        <Button onClick={props.onHide}>Okay</Button>
+        <Button onClick={props.onHide} className='timeinmodal-btn'>Okay</Button>
       </Modal.Footer>
     </Modal>
   );
