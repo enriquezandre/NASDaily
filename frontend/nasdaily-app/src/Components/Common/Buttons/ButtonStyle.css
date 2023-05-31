@@ -3,10 +3,10 @@
     color: #8A353C;
     border: none;
     border-radius: 10px;
-    width: 180px;
+    width: 230px;
     height: 45px;
     text-transform: uppercase;
-    margin: 5px 10px;
+    margin: 5px auto;
 }
 
 .yellow-button:hover,
@@ -16,8 +16,8 @@
     font-weight: bold;
     border: none;
     border-radius: 10px;
-    width: 180px;
+    width: 230px;
     height: 45px;
     text-transform: uppercase;
-    margin: 5px 10px;
+    margin: 5px auto;
 }
