@@ -1,0 +1,20 @@
+table{
+    width: 75%;
+}
+
+td,th{
+    border: 1px solid #000000;
+    padding: 5px;
+}
+
+.weekly{
+    width: 12%;
+    text-align: center;
+}
+
+.tableData{
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
