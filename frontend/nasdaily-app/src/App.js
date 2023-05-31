@@ -2,10 +2,9 @@ import React from "react";
 import { Routes, Route } from 'react-router-dom';
 import { Navigationbar } from "./Components/Navigationbar";
 import { Login } from "./Pages/Login";
-import { OASProfile } from "./Pages/OASProfile";
-import { Attendance } from "./Pages/Attendance"
 import Timeinout from "./Pages/Timeinout";
 import NASActivities from "./Pages/NASActivities";
+import OASAttendance from "./Pages/OAS/OASAttendance";
 
 function App() {
   return (
@@ -15,8 +14,7 @@ function App() {
         <Route path="/" element={<Login/>}/>
         <Route path="/timeinout" element={<Timeinout/>}/>
         <Route path="/NASActivities" element={<NASActivities/>}/>
-        <Route path="/OASprofile" element={<OASProfile/>} />
-        <Route path="/OASattendance" element={<Attendance/>} />
+        <Route path="/OASAttendance" element={<OASAttendance/>}/>
       </Routes>
     </>
   );
