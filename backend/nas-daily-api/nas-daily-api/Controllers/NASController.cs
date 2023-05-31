@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using nas_daily_api.Dtos;
 using nas_daily_api.Services;
+using System.Threading.Tasks;
 
 namespace nas_daily_api.Controllers
 {
@@ -9,16 +10,18 @@ namespace nas_daily_api.Controllers
     public class NASController : ControllerBase
     {
         private readonly INASService _nasService;
+        private readonly ILogger<NASController> _logger;
 
-        public NASController(INASService nasService)
+        public NASController(INASService nasService, ILogger<NASController> logger)
         {
             _nasService = nasService;
+            _logger = logger;
         }
 
         [HttpGet("{nasId}")]
-        public IActionResult GetNASByNASId(string nasId)
+        public async Task<IActionResult> GetNASByNASId(string nasId)
         {
-            var nas = _nasService.GetNASByNASId(nasId);
+            var nas = await _nasService.GetNASByNASId(nasId);
             if (nas == null)
                 return NotFound();
 
@@ -26,30 +29,30 @@ namespace nas_daily_api.Controllers
         }
 
         [HttpGet]
-        public IActionResult GetAllNAS()
+        public async Task<IActionResult> GetAllNAS()
         {
-            var allNAS = _nasService.GetAllNAS();
+            var allNAS = await _nasService.GetAllNAS();
             return Ok(allNAS);
         }
 
         [HttpPost]
-        public IActionResult CreateNAS(NASDto nas)
+        public async Task<IActionResult> CreateNAS(NASDto nas)
         {
-            var createdNAS = _nasService.CreateNAS(nas);
+            var createdNAS = await _nasService.CreateNAS(nas);
             return CreatedAtAction(nameof(GetNASByNASId), new { nasId = createdNAS.NASId }, createdNAS);
         }
 
         [HttpPut("{nasId}")]
-        public IActionResult UpdateNAS(string nasId, NASDto nas)
+        public async Task<IActionResult> UpdateNAS(string nasId, NASDto nas)
         {
-            _nasService.UpdateNAS(nasId, nas);
+            await _nasService.UpdateNAS(nasId, nas);
             return NoContent();
         }
 
         [HttpDelete("{nasId}")]
-        public IActionResult DeleteNAS(string nasId)
+        public async Task<IActionResult> DeleteNAS(string nasId)
         {
-            _nasService.DeleteNAS(nasId);
+            await _nasService.DeleteNAS(nasId);
             return NoContent();
         }
     }

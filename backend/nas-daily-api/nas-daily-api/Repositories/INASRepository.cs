@@ -1,13 +1,15 @@
-﻿using nas_daily_api.Dtos;
+﻿using nas_daily_api.Models;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace nas_daily_api.Repositories
 {
     public interface INASRepository
     {
-        NASDto GetByNASId(string nasId);
-        List<NASDto> GetAllNAS();
-        NASDto CreateNAS(NASDto nas);
-        void UpdateNAS(string nasId, NASDto nas);
-        void DeleteNAS(string nasId);
+        Task<NAS> GetByNASId(string nasId);
+        Task<IEnumerable<NAS>> GetAllNAS();
+        Task<NAS> CreateNAS(NAS nas);
+        Task UpdateNAS(string nasId, NAS nas);
+        Task DeleteNAS(string nasId);
     }
 }

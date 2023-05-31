@@ -1,11 +1,13 @@
 ﻿using nas_daily_api.Dtos;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace nas_daily_api.Services
 {
     public interface ILogService
     {
-        LogDto CreateLog(LogDto log);
-        LogDto GetLogById(string LogId);
-        List<LogDto> GetAllLogs();
+        Task<LogDto> CreateLog(LogDto log);
+        Task<LogDto> GetLogById(string logId);
+        Task<IEnumerable<LogDto>> GetAllLogs();
     }
 }

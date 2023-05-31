@@ -1,41 +1,51 @@
-﻿using nas_daily_api.Dtos;
+﻿using AutoMapper;
+using nas_daily_api.Dtos;
+using nas_daily_api.Models;
 using nas_daily_api.Repositories;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace nas_daily_api.Services
 {
     public class TasksService : ITasksService
     {
         private readonly ITasksRepository _tasksRepository;
+        private readonly IMapper _mapper;
 
-        public TasksService(ITasksRepository tasksRepository)
+        public TasksService(ITasksRepository tasksRepository, IMapper mapper)
         {
             _tasksRepository = tasksRepository;
+            _mapper = mapper;
         }
 
-        public TasksDto CreateTask(TasksDto task)
+        public async Task<TasksDto> CreateTaskAsync(TasksDto task)
         {
-            return _tasksRepository.CreateTask(task);
+            var mappedTask = _mapper.Map<Tasks>(task);
+            var createdTask = await _tasksRepository.CreateTask(mappedTask);
+            return _mapper.Map<TasksDto>(createdTask);
         }
 
-        public TasksDto GetTaskById(string taskId)
+        public async Task<TasksDto> GetTaskByIdAsync(string taskId)
         {
-            return _tasksRepository.GetTaskById(taskId);
+            var task = await _tasksRepository.GetTaskById(taskId);
+            return _mapper.Map<TasksDto>(task);
         }
 
-        public List<TasksDto> GetAllTasks()
+        public async Task<IEnumerable<TasksDto>> GetAllTasksAsync()
         {
-            return _tasksRepository.GetAllTasks();
+            var tasks = await _tasksRepository.GetAllTasks();
+            return _mapper.Map<IEnumerable<TasksDto>>(tasks);
         }
 
-        public void UpdateTask(TasksDto task)
+        public async Task UpdateTaskAsync(TasksDto task)
         {
-            _tasksRepository.UpdateTask(task);
+            var mappedTask = _mapper.Map<Tasks>(task);
+            await _tasksRepository.UpdateTask(mappedTask);
         }
 
-        public void DeleteTask(string taskId)
+        public async Task DeleteTaskAsync(string taskId)
         {
-            _tasksRepository.DeleteTask(taskId);
+            await _tasksRepository.DeleteTask(taskId);
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using nas_daily_api.Dtos;
 using nas_daily_api.Services;
+using System.Threading.Tasks;
 
 namespace nas_daily_api.Controllers
 {
@@ -16,16 +17,16 @@ namespace nas_daily_api.Controllers
         }
 
         [HttpPost]
-        public IActionResult CreateTask(TasksDto task)
+        public async Task<IActionResult> CreateTask(TasksDto task)
         {
-            var createdTask = _tasksService.CreateTask(task);
+            var createdTask = await _tasksService.CreateTaskAsync(task);
             return Ok(createdTask);
         }
 
         [HttpGet("{taskId}")]
-        public IActionResult GetTaskById(string taskId)
+        public async Task<IActionResult> GetTaskById(string taskId)
         {
-            var task = _tasksService.GetTaskById(taskId);
+            var task = await _tasksService.GetTaskByIdAsync(taskId);
             if (task == null)
                 return NotFound();
 
@@ -33,23 +34,23 @@ namespace nas_daily_api.Controllers
         }
 
         [HttpGet]
-        public IActionResult GetAllTasks()
+        public async Task<IActionResult> GetAllTasks()
         {
-            var tasks = _tasksService.GetAllTasks();
+            var tasks = await _tasksService.GetAllTasksAsync();
             return Ok(tasks);
         }
 
         [HttpPut]
-        public IActionResult UpdateTask(TasksDto task)
+        public async Task<IActionResult> UpdateTask(TasksDto task)
         {
-            _tasksService.UpdateTask(task);
+            await _tasksService.UpdateTaskAsync(task);
             return Ok();
         }
 
         [HttpDelete("{taskId}")]
-        public IActionResult DeleteTask(string taskId)
+        public async Task<IActionResult> DeleteTask(string taskId)
         {
-            _tasksService.DeleteTask(taskId);
+            await _tasksService.DeleteTaskAsync(taskId);
             return Ok();
         }
     }

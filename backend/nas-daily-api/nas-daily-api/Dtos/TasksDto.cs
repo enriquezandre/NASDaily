@@ -11,7 +11,7 @@ namespace nas_daily_api.Dtos
 
         [BsonElement("TaskId")]
         public string? TaskId { get; set; }
-
         public string? Description { get; set; }
+        public string? NASId { get; set; }
     }
 }

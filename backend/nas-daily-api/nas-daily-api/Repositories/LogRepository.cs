@@ -1,34 +1,35 @@
 ﻿using Microsoft.Extensions.Options;
 using MongoDB.Driver;
 using nas_daily_api.DatabaseSettings;
-using nas_daily_api.Dtos;
+using nas_daily_api.Models;
 
 namespace nas_daily_api.Repositories
 {
     public class LogRepository : ILogRepository
     {
-        private readonly IMongoCollection<LogDto> _logCollection;
+        private readonly IMongoCollection<Log> _logCollection;
 
         public LogRepository(IOptions<DatabaseSetting> options)
         {
             var mongoClient = new MongoClient(options.Value.ConnectionString);
             _logCollection = mongoClient.GetDatabase(options.Value.DatabaseName)
-                .GetCollection<LogDto>(options.Value.LogCollectionName);
+                .GetCollection<Log>(options.Value.LogCollectionName);
         }
 
-        public LogDto CreateLog(LogDto log)
+        public async Task<Log> CreateLog(Log log)
         {
-            _logCollection.InsertOne(log);
+            await _logCollection.InsertOneAsync(log);
             return log;
         }
 
-        public LogDto GetLogById(string LogId)
+        public async Task<Log> GetLogById(string logId)
         {
-            return _logCollection.Find(log => log.LogId == LogId).FirstOrDefault();
+            return await _logCollection.Find(log => log.LogId == logId).FirstOrDefaultAsync();
         }
-        public List<LogDto> GetAllLogs()
+
+        public async Task<IEnumerable<Log>> GetAllLogs()
         {
-            return _logCollection.Find(_ => true).ToList();
+            return await _logCollection.Find(_ => true).ToListAsync();
         }
     }
 }
