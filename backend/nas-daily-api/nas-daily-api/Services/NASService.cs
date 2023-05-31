@@ -3,6 +3,7 @@ using nas_daily_api.Dtos;
 using nas_daily_api.Models;
 using nas_daily_api.Repositories;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace nas_daily_api.Services
@@ -18,32 +19,25 @@ namespace nas_daily_api.Services
             _mapper = mapper;
         }
 
-        public async Task<NASDto> GetNASByNASId(string nasId)
-        {
-            var nas = await _nasRepository.GetByNASId(nasId);
-
-            if (nas == null)
-                return null;
-
-            var nasDto = _mapper.Map<NASDto>(nas);
-
-            // Filter the Office, Tasks, and Logs based on the provided nasId
-            nasDto.Office = _mapper.Map<OfficeDto>(nas.Office);
-            nasDto.Tasks = _mapper.Map<List<TasksDto>>(nas.Tasks.Where(t => t.NASId == nasId));
-            nasDto.Logs = _mapper.Map<List<LogDto>>(nas.Logs.Where(l => l.NASId == nasId));
-
-            return nasDto;
-        }
-
         public async Task<IEnumerable<NASDto>> GetAllNAS()
         {
             var nasList = await _nasRepository.GetAllNAS();
             return _mapper.Map<IEnumerable<NASDto>>(nasList);
         }
-
-        public async Task<NASDto> CreateNAS(NASDto nas)
+        public async Task<NASDto> GetByNASId(string nasId)
         {
-            var nasModel = _mapper.Map<NAS>(nas);
+            var nas = await _nasRepository.GetByNASId(nasId);
+            return _mapper.Map<NASDto>(nas);
+        }
+        public async Task<NASDto> GetByUserName(string userName)
+        {
+            var nas = await _nasRepository.GetByUserName(userName);
+            return _mapper.Map<NASDto>(nas);
+        }
+
+        public async Task<NASDto> CreateNAS(NASCreationDto nasCreationDto)
+        {
+            var nasModel = _mapper.Map<NAS>(nasCreationDto);
             await _nasRepository.CreateNAS(nasModel);
             return _mapper.Map<NASDto>(nasModel);
         }
@@ -57,6 +51,19 @@ namespace nas_daily_api.Services
         public async Task DeleteNAS(string nasId)
         {
             await _nasRepository.DeleteNAS(nasId);
+        }
+
+        public async Task AddLogToNAS(string nasId, LogDto logDto)
+        {
+            var nas = await _nasRepository.GetByNASId(nasId);
+            if (nas == null)
+            {
+                throw new FileNotFoundException("NAS document not found.");
+            }
+            var log = _mapper.Map<Log>(logDto);
+            nas.Logs.Add(log);
+
+            await _nasRepository.UpdateNAS(nasId, nas);
         }
     }
 }

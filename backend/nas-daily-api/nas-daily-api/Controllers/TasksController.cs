@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using nas_daily_api.Dtos;
+using nas_daily_api.Models;
 using nas_daily_api.Services;
 using System.Threading.Tasks;
 
@@ -14,13 +15,6 @@ namespace nas_daily_api.Controllers
         public TasksController(ITasksService tasksService)
         {
             _tasksService = tasksService;
-        }
-
-        [HttpPost]
-        public async Task<IActionResult> CreateTask(TasksDto task)
-        {
-            var createdTask = await _tasksService.CreateTaskAsync(task);
-            return Ok(createdTask);
         }
 
         [HttpGet("{taskId}")]

@@ -18,13 +18,6 @@ namespace nas_daily_api.Services
             _mapper = mapper;
         }
 
-        public async Task<TasksDto> CreateTaskAsync(TasksDto task)
-        {
-            var mappedTask = _mapper.Map<Tasks>(task);
-            var createdTask = await _tasksRepository.CreateTask(mappedTask);
-            return _mapper.Map<TasksDto>(createdTask);
-        }
-
         public async Task<TasksDto> GetTaskByIdAsync(string taskId)
         {
             var task = await _tasksRepository.GetTaskById(taskId);

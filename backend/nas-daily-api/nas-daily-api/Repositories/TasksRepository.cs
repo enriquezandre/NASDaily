@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Options;
+using MongoDB.Bson;
 using MongoDB.Driver;
 using nas_daily_api.DatabaseSettings;
 using nas_daily_api.Models;
@@ -16,12 +17,6 @@ namespace nas_daily_api.Repositories
             var mongoClient = new MongoClient(options.Value.ConnectionString);
             _tasksCollection = mongoClient.GetDatabase(options.Value.DatabaseName)
                 .GetCollection<Tasks>(options.Value.TasksCollectionName);
-        }
-
-        public async Task<Tasks> CreateTask(Tasks task)
-        {
-            await _tasksCollection.InsertOneAsync(task);
-            return task;
         }
 
         public async Task<Tasks> GetTaskById(string taskId)

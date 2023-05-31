@@ -6,18 +6,20 @@ import Timeinout from "./Pages/Timeinout";
 import NASActivities from "./Pages/NASActivities";
 import OASAttendance from "./Pages/OAS/OASAttendance";
 
-function App() {
-  return (
-    <>
-      <Navigationbar/>
-      <Routes>
-        <Route path="/" element={<Login/>}/>
-        <Route path="/timeinout" element={<Timeinout/>}/>
-        <Route path="/NASActivities" element={<NASActivities/>}/>
-        <Route path="/OASAttendance" element={<OASAttendance/>}/>
-      </Routes>
-    </>
-  );
+class App extends React.Component {
+  render() {
+    return (
+      <>
+        <Navigationbar/>
+        <Routes>
+          <Route path="/" element={<Login/>}/>
+          <Route path="/:username/timeinout" element={<Timeinout />} />
+          <Route path="/:username/NASActivities" element={<NASActivities/>}/>
+          <Route path="/OASAttendance" element={<OASAttendance/>}/>
+        </Routes>
+      </>
+    );
+  }
 }
 
 export default App;

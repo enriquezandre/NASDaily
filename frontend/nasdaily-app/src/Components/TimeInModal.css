@@ -1,0 +1,9 @@
+.timeinmodal-btn{
+    background-color: #8a353c;
+    border: #8a353c;
+}
+
+.timeinmodal-btn:hover{
+    background-color: #808080;
+    border: #808080;
+}

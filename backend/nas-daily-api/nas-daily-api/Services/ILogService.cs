@@ -9,5 +9,6 @@ namespace nas_daily_api.Services
         Task<LogDto> CreateLog(LogDto log);
         Task<LogDto> GetLogById(string logId);
         Task<IEnumerable<LogDto>> GetAllLogs();
+        Task AddLogToNas(string userName, LogDto logDto);
     }
 }

@@ -1,7 +1,10 @@
 ﻿using Microsoft.Extensions.Options;
+using MongoDB.Bson;
 using MongoDB.Driver;
 using nas_daily_api.DatabaseSettings;
 using nas_daily_api.Models;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace nas_daily_api.Repositories
 {
@@ -12,8 +15,13 @@ namespace nas_daily_api.Repositories
         public NASRepository(IOptions<DatabaseSetting> options)
         {
             var mongoClient = new MongoClient(options.Value.ConnectionString);
-            _nasCollection = mongoClient.GetDatabase(options.Value.DatabaseName)
-                .GetCollection<NAS>(options.Value.NASCollectionName);
+            var database = mongoClient.GetDatabase(options.Value.DatabaseName);
+            _nasCollection = database.GetCollection<NAS>(options.Value.NASCollectionName);
+        }
+
+        public async Task<List<NAS>> GetAllNAS()
+        {
+            return await _nasCollection.Find(_ => true).ToListAsync();
         }
 
         public async Task<NAS> GetByNASId(string nasId)
@@ -21,25 +29,28 @@ namespace nas_daily_api.Repositories
             return await _nasCollection.Find(nas => nas.NASId == nasId).FirstOrDefaultAsync();
         }
 
-        public async Task<IEnumerable<NAS>> GetAllNAS()
+        public async Task<NAS> GetByUserName(string userName)
         {
-            return await _nasCollection.Find(_ => true).ToListAsync();
+            return await _nasCollection.Find(nas => nas.Username == userName).FirstOrDefaultAsync();
         }
 
         public async Task<NAS> CreateNAS(NAS nas)
         {
+            nas.NASId = ObjectId.GenerateNewId().ToString();
             await _nasCollection.InsertOneAsync(nas);
             return nas;
         }
 
         public async Task UpdateNAS(string nasId, NAS nas)
         {
-            await _nasCollection.ReplaceOneAsync(n => n.NASId == nasId, nas);
+            var filter = Builders<NAS>.Filter.Eq(n => n.NASId, nasId);
+            await _nasCollection.ReplaceOneAsync(filter, nas);
         }
 
         public async Task DeleteNAS(string nasId)
         {
-            await _nasCollection.DeleteOneAsync(nas => nas.NASId == nasId);
+            var filter = Builders<NAS>.Filter.Eq(nas => nas.NASId, nasId);
+            await _nasCollection.DeleteOneAsync(filter);
         }
     }
 }
