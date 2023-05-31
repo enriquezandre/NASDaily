@@ -26,7 +26,7 @@ namespace nas_daily_api.Repositories
             return _nasCollection.Find(_ => true).ToList();
         }
 
-        public NASDto CreateNAS(NASDto nas)
+        public NASCreationDto CreateNAS(NASCreationDto nas)
         {
             _nasCollection.InsertOne(nas);
             return nas;

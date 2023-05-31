@@ -6,7 +6,7 @@ namespace nas_daily_api.Repositories
     {
         NASDto GetByNASId(string nasId);
         List<NASDto> GetAllNAS();
-        NASDto CreateNAS(NASDto nas);
+        NASCreationDto CreateNAS(NASCreationDto nas);
         void UpdateNAS(string nasId, NASDto nas);
         void DeleteNAS(string nasId);
     }
