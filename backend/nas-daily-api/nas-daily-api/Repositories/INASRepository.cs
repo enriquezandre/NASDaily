@@ -10,7 +10,7 @@ namespace nas_daily_api.Repositories
         Task<List<NAS>> GetAllNAS();
         Task<NAS> GetByUserName(string userName);
         Task<NAS> CreateNAS(NAS nas);
-        Task UpdateNAS(string nasId, NAS nas);
+        Task UpdateNAS(string user, NAS nas);
         Task DeleteNAS(string nasId);
     }
 }
