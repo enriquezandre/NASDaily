@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Options;
+using MongoDB.Bson;
 using MongoDB.Driver;
 using nas_daily_api.DatabaseSettings;
 using nas_daily_api.Models;
@@ -20,6 +21,7 @@ namespace nas_daily_api.Repositories
 
         public async Task<Tasks> CreateTask(Tasks task)
         {
+            task.Id = ObjectId.GenerateNewId().ToString();
             await _tasksCollection.InsertOneAsync(task);
             return task;
         }

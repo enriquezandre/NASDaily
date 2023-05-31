@@ -7,7 +7,6 @@ namespace nas_daily_api.Dtos
     {
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]
-        public string? Id { get; set; }
         [BsonElement("AttendanceSummaryId")]
         public string? AttendanceSummaryId { get; set; }
         public string? TimeKeepingStatus { get; set; }

@@ -8,10 +8,8 @@ namespace nas_daily_api.Dtos
     {
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]
-        public string? Id { get; set; }
-
-        [BsonElement("NASId")]
         public string? NASId { get; set; }
+        public string? Username { get; set; }
         public string? Password { get; set; }
         public string? Name { get; set; }
         public string? Program { get; set; }

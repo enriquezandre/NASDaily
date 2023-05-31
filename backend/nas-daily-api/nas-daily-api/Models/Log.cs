@@ -9,8 +9,6 @@ namespace nas_daily_api.Models
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]
         public string? Id { get; set; }
-
-        [BsonElement("LogId")]
         public string? LogId { get; set; }
 
         public DateTime? TimeIn { get; set; }

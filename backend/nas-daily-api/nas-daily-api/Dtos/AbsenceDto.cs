@@ -7,7 +7,6 @@ namespace nas_daily_api.Dtos
     {
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]
-        public string? Id { get; set; }
         [BsonElement("AbsenceId")]
         public string? AbsenceId { get; set; }
         public string? Excused { get; set; }

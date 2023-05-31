@@ -1,7 +1,10 @@
 ﻿using Microsoft.Extensions.Options;
+using MongoDB.Bson;
 using MongoDB.Driver;
 using nas_daily_api.DatabaseSettings;
 using nas_daily_api.Models;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace nas_daily_api.Repositories
 {
@@ -12,12 +15,13 @@ namespace nas_daily_api.Repositories
         public LogRepository(IOptions<DatabaseSetting> options)
         {
             var mongoClient = new MongoClient(options.Value.ConnectionString);
-            _logCollection = mongoClient.GetDatabase(options.Value.DatabaseName)
-                .GetCollection<Log>(options.Value.LogCollectionName);
+            var database = mongoClient.GetDatabase(options.Value.DatabaseName);
+            _logCollection = database.GetCollection<Log>(options.Value.LogCollectionName);
         }
 
         public async Task<Log> CreateLog(Log log)
         {
+            log.Id = ObjectId.GenerateNewId().ToString();
             await _logCollection.InsertOneAsync(log);
             return log;
         }

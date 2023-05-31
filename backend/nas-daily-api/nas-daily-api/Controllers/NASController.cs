@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using nas_daily_api.Dtos;
 using nas_daily_api.Services;
+using Microsoft.Extensions.Logging;
 using System.Threading.Tasks;
 
 namespace nas_daily_api.Controllers
@@ -18,16 +19,6 @@ namespace nas_daily_api.Controllers
             _logger = logger;
         }
 
-        [HttpGet("{nasId}")]
-        public async Task<IActionResult> GetNASByNASId(string nasId)
-        {
-            var nas = await _nasService.GetNASByNASId(nasId);
-            if (nas == null)
-                return NotFound();
-
-            return Ok(nas);
-        }
-
         [HttpGet]
         public async Task<IActionResult> GetAllNAS()
         {
@@ -35,8 +26,28 @@ namespace nas_daily_api.Controllers
             return Ok(allNAS);
         }
 
+        [HttpGet("{nasId}")]
+        public async Task<IActionResult> GetNASByNASId(string nasId)
+        {
+            var nas = await _nasService.GetByNASId(nasId);
+            if (nas == null)
+                return NotFound();
+
+            return Ok(nas);
+        }
+        [HttpGet("username/{userName}")]
+        public async Task<IActionResult> GetNASByUserName(string userName)
+        {
+            var nas = await _nasService.GetByUserName(userName);
+            if (nas == null)
+                return NotFound();
+
+            return Ok(nas);
+        }
+
+
         [HttpPost]
-        public async Task<IActionResult> CreateNAS(NASDto nas)
+        public async Task<IActionResult> CreateNAS(NASCreationDto nas)
         {
             var createdNAS = await _nasService.CreateNAS(nas);
             return CreatedAtAction(nameof(GetNASByNASId), new { nasId = createdNAS.NASId }, createdNAS);
