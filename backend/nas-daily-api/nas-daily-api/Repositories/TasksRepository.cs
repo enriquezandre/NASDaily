@@ -19,13 +19,6 @@ namespace nas_daily_api.Repositories
                 .GetCollection<Tasks>(options.Value.TasksCollectionName);
         }
 
-        public async Task<Tasks> CreateTask(Tasks task)
-        {
-            task.Id = ObjectId.GenerateNewId().ToString();
-            await _tasksCollection.InsertOneAsync(task);
-            return task;
-        }
-
         public async Task<Tasks> GetTaskById(string taskId)
         {
             return await _tasksCollection.Find(task => task.TaskId == taskId).FirstOrDefaultAsync();

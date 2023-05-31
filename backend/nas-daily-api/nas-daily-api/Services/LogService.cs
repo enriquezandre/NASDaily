@@ -18,11 +18,17 @@ namespace nas_daily_api.Services
             _mapper = mapper;
         }
 
-        public async Task<LogDto> CreateLog(LogDto log)
+        public async Task<LogDto> CreateLog(LogDto logDto)
         {
-            var logModel = _mapper.Map<Log>(log);
-            var createdLog = await _logRepository.CreateLog(logModel);
-            return _mapper.Map<LogDto>(createdLog);
+            var log = new Log
+            {
+                LogId = logDto.LogId,
+                TimeIn = logDto.TimeIn,
+                TimeOut = logDto.TimeOut
+            };
+
+            await _logRepository.CreateLog(log);
+            return _mapper.Map<LogDto>(log);
         }
 
         public async Task<LogDto> GetLogById(string logId)
@@ -35,6 +41,11 @@ namespace nas_daily_api.Services
         {
             var logs = await _logRepository.GetAllLogs();
             return _mapper.Map<IEnumerable<LogDto>>(logs);
+        }
+        public async Task AddLogToNas(string userName, LogDto logDto)
+        {
+            var log = _mapper.Map<Log>(logDto);
+            await _logRepository.AddLogToNas(userName, log);
         }
     }
 }

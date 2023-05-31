@@ -52,5 +52,18 @@ namespace nas_daily_api.Services
         {
             await _nasRepository.DeleteNAS(nasId);
         }
+
+        public async Task AddLogToNAS(string nasId, LogDto logDto)
+        {
+            var nas = await _nasRepository.GetByNASId(nasId);
+            if (nas == null)
+            {
+                throw new FileNotFoundException("NAS document not found.");
+            }
+            var log = _mapper.Map<Log>(logDto);
+            nas.Logs.Add(log);
+
+            await _nasRepository.UpdateNAS(nasId, nas);
+        }
     }
 }

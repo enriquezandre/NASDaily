@@ -1,6 +1,7 @@
 ﻿using MongoDB.Bson.Serialization.Attributes;
 using MongoDB.Bson;
 using System;
+using nas_daily_api.Models;
 
 namespace nas_daily_api.Dtos
 {
@@ -10,11 +11,8 @@ namespace nas_daily_api.Dtos
         [BsonRepresentation(BsonType.ObjectId)]
         public string? Id { get; set; }
         public string? LogId { get; set; }
-
         public DateTime? TimeIn { get; set; }
-
         public DateTime? TimeOut { get; set; }
-
-        public string? NASId { get; set; }
+        public Tasks Tasks { get; set; } = new Tasks();
     }
 }

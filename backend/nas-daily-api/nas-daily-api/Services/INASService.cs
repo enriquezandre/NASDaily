@@ -12,5 +12,6 @@ namespace nas_daily_api.Services
         Task<NASDto> CreateNAS(NASCreationDto nasCreationDto);
         Task UpdateNAS(string nasId, NASDto nas);
         Task DeleteNAS(string nasId);
+        Task AddLogToNAS(string nasId, LogDto logDto);
     }
 }

@@ -6,7 +6,6 @@ namespace nas_daily_api.Repositories
 {
     public interface ITasksRepository
     {
-        Task<Tasks> CreateTask(Tasks task);
         Task<Tasks> GetTaskById(string taskId);
         Task<IEnumerable<Tasks>> GetAllTasks();
         Task UpdateTask(Tasks task);

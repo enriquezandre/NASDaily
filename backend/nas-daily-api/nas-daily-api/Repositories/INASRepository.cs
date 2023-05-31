@@ -7,7 +7,7 @@ namespace nas_daily_api.Repositories
     public interface INASRepository
     {
         Task<NAS> GetByNASId(string nasId);
-        Task<IEnumerable<NAS>> GetAllNAS();
+        Task<List<NAS>> GetAllNAS();
         Task<NAS> GetByUserName(string userName);
         Task<NAS> CreateNAS(NAS nas);
         Task UpdateNAS(string nasId, NAS nas);

@@ -9,7 +9,8 @@ namespace nas_daily_api.Dtos
         [BsonRepresentation(BsonType.ObjectId)]
         public string? Id { get; set; }
         public string? TaskId { get; set; }
-        public string? Description { get; set; }
-        public string? NASId { get; set; }
+        public string? ActivitiesDone { get; set; }
+        public string? SkillsLEarned { get; set; }
+        public string? ValuesLearned { get; set; }
     }
 }
