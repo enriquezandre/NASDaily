@@ -17,18 +17,6 @@ namespace nas_daily_api.Controllers
             _tasksService = tasksService;
         }
 
-        [HttpPost]
-        public async Task<IActionResult> CreateTask(TasksDto task)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
-            var createdTask = await _tasksService.CreateTaskAsync(task);
-            return CreatedAtAction(nameof(GetTaskById), new { taskId = createdTask.TaskId }, createdTask);
-        }
-
         [HttpGet("{taskId}")]
         public async Task<IActionResult> GetTaskById(string taskId)
         {

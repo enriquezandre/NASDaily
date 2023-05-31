@@ -17,14 +17,14 @@ namespace nas_daily_api.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateLog(LogDto log)
+        public async Task<IActionResult> CreateLog(LogDto logDto)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            var createdLog = await _logService.CreateLog(log);
+            var createdLog = await _logService.CreateLog(logDto);
             return CreatedAtAction(nameof(GetLogById), new { logId = createdLog.LogId }, createdLog);
         }
 
@@ -43,6 +43,18 @@ namespace nas_daily_api.Controllers
         {
             var logs = await _logService.GetAllLogs();
             return Ok(logs);
+        }
+
+        [HttpPost("nas/{userName}/logs")]
+        public async Task<IActionResult> CreateLogToNas(string userName, LogDto logDto)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            await _logService.AddLogToNas(userName, logDto);
+            return Ok();
         }
     }
 }

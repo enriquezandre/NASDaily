@@ -9,9 +9,8 @@ namespace nas_daily_api.Mappings
         public NASMappings()
         {
             CreateMap<NAS, NASDto>();
-            CreateMap<NASCreationDto, NAS>()
-                .ForMember(dest => dest.NASId, opt => opt.Ignore());
-            CreateMap<NASOfficeDto, OfficeDto>();
+            CreateMap<NASDto, NAS>();
+            CreateMap<NASCreationDto, NAS>();
         }
     }
 }

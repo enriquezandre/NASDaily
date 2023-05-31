@@ -66,5 +66,24 @@ namespace nas_daily_api.Controllers
             await _nasService.DeleteNAS(nasId);
             return NoContent();
         }
+
+        [HttpPost("{nasId}/logs")]
+        public async Task<IActionResult> AddLogToNAS(string nasId, LogDto logDto)
+        {
+            try
+            {
+                await _nasService.AddLogToNAS(nasId, logDto);
+                return NoContent();
+            }
+            catch (FileNotFoundException)
+            {
+                return NotFound();
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error occurred while adding log to NAS.");
+                return StatusCode(500, "An error occurred while adding log to NAS.");
+            }
+        }
     }
 }

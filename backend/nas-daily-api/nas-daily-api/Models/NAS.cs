@@ -15,8 +15,7 @@ namespace nas_daily_api.Models
         public string? Year { get; set; }
         public string? Semester { get; set; }
         public string? SchoolYear { get; set; }
-        public Office Office { get; set; } = new Office();
-        public List<Tasks> Tasks { get; set; } = new List<Tasks>();
+        public string? Office { get; set; }
         public List<Log> Logs { get; set; } = new List<Log>();
     }
 }

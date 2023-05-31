@@ -19,14 +19,16 @@ namespace nas_daily_api.Repositories
             _nasCollection = database.GetCollection<NAS>(options.Value.NASCollectionName);
         }
 
-        public async Task<IEnumerable<NAS>> GetAllNAS()
+        public async Task<List<NAS>> GetAllNAS()
         {
             return await _nasCollection.Find(_ => true).ToListAsync();
         }
+
         public async Task<NAS> GetByNASId(string nasId)
         {
             return await _nasCollection.Find(nas => nas.NASId == nasId).FirstOrDefaultAsync();
         }
+
         public async Task<NAS> GetByUserName(string userName)
         {
             return await _nasCollection.Find(nas => nas.Username == userName).FirstOrDefaultAsync();
@@ -34,6 +36,7 @@ namespace nas_daily_api.Repositories
 
         public async Task<NAS> CreateNAS(NAS nas)
         {
+            nas.NASId = ObjectId.GenerateNewId().ToString();
             await _nasCollection.InsertOneAsync(nas);
             return nas;
         }
