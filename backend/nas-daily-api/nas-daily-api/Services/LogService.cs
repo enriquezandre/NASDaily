@@ -10,12 +10,14 @@ namespace nas_daily_api.Services
     public class LogService : ILogService
     {
         private readonly ILogRepository _logRepository;
+        private readonly INASRepository _nasRepository;
         private readonly IMapper _mapper;
 
-        public LogService(ILogRepository logRepository, IMapper mapper)
+        public LogService(ILogRepository logRepository, IMapper mapper, INASRepository nasRepository)
         {
             _logRepository = logRepository;
             _mapper = mapper;
+            _nasRepository = nasRepository;
         }
 
         public async Task<LogDto> CreateLog(LogDto logDto)
@@ -24,7 +26,8 @@ namespace nas_daily_api.Services
             {
                 LogId = logDto.LogId,
                 TimeIn = logDto.TimeIn,
-                TimeOut = logDto.TimeOut
+                TimeOut = logDto.TimeOut,
+                Tasks = _mapper.Map<Tasks>(logDto.Tasks)
             };
 
             await _logRepository.CreateLog(log);
@@ -44,8 +47,17 @@ namespace nas_daily_api.Services
         }
         public async Task AddLogToNas(string userName, LogDto logDto)
         {
+            var nas = await _nasRepository.GetByUserName(userName);
+            if (nas == null)
+            {
+                throw new FileNotFoundException("NAS not found");
+            }
+
             var log = _mapper.Map<Log>(logDto);
-            await _logRepository.AddLogToNas(userName, log);
+            nas.Logs.Add(log);
+
+            await _nasRepository.UpdateNAS(userName, nas);
+            await _logRepository.CreateLog(log);
         }
 
         public async Task UpdateLog(string userName, LogUpdateDto log)

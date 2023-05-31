@@ -10,7 +10,7 @@ namespace nas_daily_api.Services
         Task<IEnumerable<NASDto>> GetAllNAS();
         Task<NASDto> GetByUserName(string userName);
         Task<NASDto> CreateNAS(NASCreationDto nasCreationDto);
-        Task UpdateNAS(string nasId, NASDto nas);
+        Task UpdateNAS(string user, NASUpdationDto nas);
         Task DeleteNAS(string nasId);
         Task AddLogToNAS(string nasId, LogDto logDto);
     }

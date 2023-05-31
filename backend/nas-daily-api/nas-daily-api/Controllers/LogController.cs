@@ -55,7 +55,7 @@ namespace nas_daily_api.Controllers
             }
 
             await _logService.AddLogToNas(userName, logDto);
-            return Ok();
+            return Ok(logDto);
         }
 
         [HttpPut("{oasId}")]

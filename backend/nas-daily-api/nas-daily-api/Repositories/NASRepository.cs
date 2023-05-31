@@ -41,9 +41,9 @@ namespace nas_daily_api.Repositories
             return nas;
         }
 
-        public async Task UpdateNAS(string nasId, NAS nas)
+        public async Task UpdateNAS(string user, NAS nas)
         {
-            var filter = Builders<NAS>.Filter.Eq(n => n.NASId, nasId);
+            var filter = Builders<NAS>.Filter.Eq(n => n.Username, user);
             await _nasCollection.ReplaceOneAsync(filter, nas);
         }
 

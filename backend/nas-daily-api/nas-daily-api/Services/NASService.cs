@@ -42,10 +42,10 @@ namespace nas_daily_api.Services
             return _mapper.Map<NASDto>(nasModel);
         }
 
-        public async Task UpdateNAS(string nasId, NASDto nas)
+        public async Task UpdateNAS(string user, NASUpdationDto nas)
         {
-            var nasModel = _mapper.Map<NAS>(nas);
-            await _nasRepository.UpdateNAS(nasId, nasModel);
+            var nasModel = _mapper.Map<NAS>(user);
+            await _nasRepository.UpdateNAS(user, nasModel);
         }
 
         public async Task DeleteNAS(string nasId)
