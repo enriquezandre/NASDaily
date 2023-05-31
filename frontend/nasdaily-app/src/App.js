@@ -12,8 +12,8 @@ function App() {
       <Navigationbar/>
       <Routes>
         <Route path="/" element={<Login/>}/>
-        <Route path="/:nasId/timeinout" element={<Timeinout />} />
-        <Route path="/:nasId/NASActivities" element={<NASActivities/>}/>
+        <Route path="/:username/timeinout" element={<Timeinout />} />
+        <Route path="/:username/NASActivities" element={<NASActivities/>}/>
         <Route path="/OASAttendance" element={<OASAttendance/>}/>
       </Routes>
     </>

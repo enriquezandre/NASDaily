@@ -9,7 +9,7 @@ export const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+  
     try {
       const response = await fetch('https://localhost:7047/api/nas', {
         method: 'GET',
@@ -17,28 +17,33 @@ export const Login = () => {
           'Content-Type': 'application/json',
         },
       });
-
+  
       if (response.ok) {
         const nasList = await response.json();
-
-        const nas = nasList.find((n) => n.nasId === username && n.password === password);
-
+        console.log('NAS List:', nasList);
+        console.log('Username:', username);
+        console.log('Password:', password);
+        const nas = nasList.find((n) => n.username === username && n.password === password);
+  
         if (nas) {
+          console.log('Successful login:', nas);
           // Successful login, redirect user to timeinout page
           window.location.href = `/${username}/timeinout`;
         } else {
+          console.log('Invalid credentials');
           // Invalid credentials, display error message
           setLoginError(true);
         }
       } else {
+        console.log('API request failed:', response.status);
         // Handle failed API request, display error message
         setLoginError(true);
       }
     } catch (error) {
-      // Handle any errors that occur during the API request
       console.error('Error:', error);
     }
   };
+  
 
   return (
     <>
