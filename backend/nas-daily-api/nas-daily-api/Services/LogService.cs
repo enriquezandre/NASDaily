@@ -47,5 +47,11 @@ namespace nas_daily_api.Services
             var log = _mapper.Map<Log>(logDto);
             await _logRepository.AddLogToNas(userName, log);
         }
+
+        public async Task UpdateLog(string userName, LogUpdateDto log)
+        {
+            var logModel = _mapper.Map<Log>(log);
+            await _logRepository.UpdateLog(userName, logModel);
+        }
     }
 }
