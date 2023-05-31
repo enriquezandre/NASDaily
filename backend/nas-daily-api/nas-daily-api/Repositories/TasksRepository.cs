@@ -1,48 +1,47 @@
 ﻿using Microsoft.Extensions.Options;
 using MongoDB.Driver;
 using nas_daily_api.DatabaseSettings;
-using nas_daily_api.Dtos;
+using nas_daily_api.Models;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace nas_daily_api.Repositories
 {
     public class TasksRepository : ITasksRepository
     {
-        private readonly IMongoCollection<TasksDto> _tasksCollection;
+        private readonly IMongoCollection<Tasks> _tasksCollection;
 
         public TasksRepository(IOptions<DatabaseSetting> options)
         {
             var mongoClient = new MongoClient(options.Value.ConnectionString);
             _tasksCollection = mongoClient.GetDatabase(options.Value.DatabaseName)
-                .GetCollection<TasksDto>(options.Value.TasksCollectionName);
+                .GetCollection<Tasks>(options.Value.TasksCollectionName);
         }
 
-        public TasksDto CreateTask(TasksDto task)
+        public async Task<Tasks> CreateTask(Tasks task)
         {
-            _tasksCollection.InsertOne(task);
+            await _tasksCollection.InsertOneAsync(task);
             return task;
         }
 
-        public TasksDto GetTaskById(string taskId)
+        public async Task<Tasks> GetTaskById(string taskId)
         {
-            return _tasksCollection.Find(task => task.TaskId == taskId).FirstOrDefault();
+            return await _tasksCollection.Find(task => task.TaskId == taskId).FirstOrDefaultAsync();
         }
 
-        public List<TasksDto> GetAllTasks()
+        public async Task<IEnumerable<Tasks>> GetAllTasks()
         {
-            return _tasksCollection.Find(_ => true).ToList();
+            return await _tasksCollection.Find(_ => true).ToListAsync();
         }
 
-        public void UpdateTask(TasksDto task)
+        public async Task UpdateTask(Tasks task)
         {
-            var filter = Builders<TasksDto>.Filter.Eq(t => t.TaskId, task.TaskId);
-            _tasksCollection.ReplaceOne(filter, task);
+            await _tasksCollection.ReplaceOneAsync(t => t.TaskId == task.TaskId, task);
         }
 
-        public void DeleteTask(string taskId)
+        public async Task DeleteTask(string taskId)
         {
-            var filter = Builders<TasksDto>.Filter.Eq(t => t.TaskId, taskId);
-            _tasksCollection.DeleteOne(filter);
+            await _tasksCollection.DeleteOneAsync(task => task.TaskId == taskId);
         }
     }
 }

@@ -90,3 +90,5 @@ C:\Users\DELL\SCHOOL\Jan-May (2023)\Software Engineering 1\NASDaily\backend\nas-
 C:\Users\DELL\SCHOOL\Jan-May (2023)\Software Engineering 1\NASDaily\backend\nas-daily-api\nas-daily-api\obj\Debug\net7.0\nas-daily-api.pdb
 C:\Users\DELL\SCHOOL\Jan-May (2023)\Software Engineering 1\NASDaily\backend\nas-daily-api\nas-daily-api\obj\Debug\net7.0\nas-daily-api.genruntimeconfig.cache
 C:\Users\DELL\SCHOOL\Jan-May (2023)\Software Engineering 1\NASDaily\backend\nas-daily-api\nas-daily-api\obj\Debug\net7.0\ref\nas-daily-api.dll
+D:\CIT-U\SOFTENG\NASDaily\backend\nas-daily-api\nas-daily-api\bin\Debug\net7.0\AutoMapper.dll
+D:\CIT-U\SOFTENG\NASDaily\backend\nas-daily-api\nas-daily-api\bin\Debug\net7.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll

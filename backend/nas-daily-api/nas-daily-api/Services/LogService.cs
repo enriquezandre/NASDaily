@@ -1,29 +1,40 @@
-﻿using nas_daily_api.Dtos;
+﻿using AutoMapper;
+using nas_daily_api.Dtos;
+using nas_daily_api.Models;
 using nas_daily_api.Repositories;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace nas_daily_api.Services
 {
     public class LogService : ILogService
     {
         private readonly ILogRepository _logRepository;
+        private readonly IMapper _mapper;
 
-        public LogService(ILogRepository logRepository)
+        public LogService(ILogRepository logRepository, IMapper mapper)
         {
             _logRepository = logRepository;
+            _mapper = mapper;
         }
 
-        public LogDto CreateLog(LogDto log)
+        public async Task<LogDto> CreateLog(LogDto log)
         {
-            return _logRepository.CreateLog(log);
+            var logModel = _mapper.Map<Log>(log);
+            var createdLog = await _logRepository.CreateLog(logModel);
+            return _mapper.Map<LogDto>(createdLog);
         }
 
-        public LogDto GetLogById(string LogId)
+        public async Task<LogDto> GetLogById(string logId)
         {
-            return _logRepository.GetLogById(LogId);
+            var log = await _logRepository.GetLogById(logId);
+            return _mapper.Map<LogDto>(log);
         }
-        public List<LogDto> GetAllLogs()
+
+        public async Task<IEnumerable<LogDto>> GetAllLogs()
         {
-            return _logRepository.GetAllLogs();
+            var logs = await _logRepository.GetAllLogs();
+            return _mapper.Map<IEnumerable<LogDto>>(logs);
         }
     }
 }

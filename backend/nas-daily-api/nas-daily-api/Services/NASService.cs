@@ -1,41 +1,51 @@
-﻿using nas_daily_api.Dtos;
+﻿using AutoMapper;
+using nas_daily_api.Dtos;
+using nas_daily_api.Models;
 using nas_daily_api.Repositories;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace nas_daily_api.Services
 {
     public class NASService : INASService
     {
         private readonly INASRepository _nasRepository;
+        private readonly IMapper _mapper;
 
-        public NASService(INASRepository nasRepository)
+        public NASService(INASRepository nasRepository, IMapper mapper)
         {
             _nasRepository = nasRepository;
+            _mapper = mapper;
         }
 
-        public NASDto GetNASByNASId(string nasId)
+        public async Task<NASDto> GetNASByNASId(string nasId)
         {
-            return _nasRepository.GetByNASId(nasId);
+            var nas = await _nasRepository.GetByNASId(nasId);
+            return _mapper.Map<NASDto>(nas);
         }
 
-        public List<NASDto> GetAllNAS()
+        public async Task<IEnumerable<NASDto>> GetAllNAS()
         {
-            return _nasRepository.GetAllNAS();
+            var nasList = await _nasRepository.GetAllNAS();
+            return _mapper.Map<IEnumerable<NASDto>>(nasList);
         }
 
-        public NASDto CreateNAS(NASDto nas)
+        public async Task<NASDto> CreateNAS(NASDto nas)
         {
-            return _nasRepository.CreateNAS(nas);
+            var nasModel = _mapper.Map<NAS>(nas);
+            await _nasRepository.CreateNAS(nasModel);
+            return _mapper.Map<NASDto>(nasModel);
         }
 
-        public void UpdateNAS(string nasId, NASDto nas)
+        public async Task UpdateNAS(string nasId, NASDto nas)
         {
-            _nasRepository.UpdateNAS(nasId, nas);
+            var nasModel = _mapper.Map<NAS>(nas);
+            await _nasRepository.UpdateNAS(nasId, nasModel);
         }
 
-        public void DeleteNAS(string nasId)
+        public async Task DeleteNAS(string nasId)
         {
-            _nasRepository.DeleteNAS(nasId);
+            await _nasRepository.DeleteNAS(nasId);
         }
     }
 }

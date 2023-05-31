@@ -1,14 +1,15 @@
-﻿using System.Collections.Generic;
-using nas_daily_api.Dtos;
+﻿using nas_daily_api.Models;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace nas_daily_api.Repositories
 {
     public interface ITasksRepository
     {
-        TasksDto CreateTask(TasksDto task);
-        TasksDto GetTaskById(string taskId);
-        List<TasksDto> GetAllTasks();
-        void UpdateTask(TasksDto task);
-        void DeleteTask(string taskId);
+        Task<Tasks> CreateTask(Tasks task);
+        Task<Tasks> GetTaskById(string taskId);
+        Task<IEnumerable<Tasks>> GetAllTasks();
+        Task UpdateTask(Tasks task);
+        Task DeleteTask(string taskId);
     }
 }
