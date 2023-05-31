@@ -9,47 +9,49 @@ namespace nas_daily_api.Controllers
     public class AttendanceSummaryController : ControllerBase
     {
         private readonly IAttendanceSummaryService _attendanceSummaryService;
+        private readonly ILogger<AttendanceSummaryController> _logger;
 
-        public AttendanceSummaryController(IAttendanceSummaryService attendanceSummaryService)
+        public AttendanceSummaryController(IAttendanceSummaryService AttendanceSummaryService, ILogger<AttendanceSummaryController> logger)
         {
-            _attendanceSummaryService = attendanceSummaryService;
+            _attendanceSummaryService = AttendanceSummaryService;
+            _logger = logger;
         }
 
-        [HttpGet("{attendanceSummaryId}")]
-        public IActionResult GetAttendanceSummaryByAttendanceSummaryId(string attendanceSummaryId)
+        [HttpGet("{AttendanceSummaryId}")]
+        public async Task<IActionResult> GetAttendanceSummaryByAttendanceSummaryId(string AttendanceSummaryId)
         {
-            var attendanceSummary = _attendanceSummaryService.GetAttendanceSummaryByAttendanceSummaryId(attendanceSummaryId);
-            if (attendanceSummary == null)
+            var AttendanceSummary = await _attendanceSummaryService.GetAttendanceSummaryByAttendanceSummaryId(AttendanceSummaryId);
+            if (AttendanceSummary == null)
                 return NotFound();
 
-            return Ok(attendanceSummary);
+            return Ok(AttendanceSummary);
         }
 
         [HttpGet]
-        public IActionResult GetAllAttendanceSummary()
+        public async Task<IActionResult> GetAllAttendanceSummary()
         {
-            var allAttendanceSummary = _attendanceSummaryService.GetAllAttendanceSummary();
+            var allAttendanceSummary = await _attendanceSummaryService.GetAllAttendanceSummary();
             return Ok(allAttendanceSummary);
         }
 
         [HttpPost]
-        public IActionResult CreateattendanceSummary(AttendanceSummaryDto attendanceSummary)
+        public async Task<IActionResult> CreateAttendanceSummary(AttendanceSummaryCUDto AttendanceSummary)
         {
-            var createdAttendanceSummary = _attendanceSummaryService.CreateAttendanceSummary(attendanceSummary);
-            return CreatedAtAction(nameof(GetAttendanceSummaryByAttendanceSummaryId), new { attendanceSummaryId = createdAttendanceSummary.AttendanceSummaryId }, createdAttendanceSummary);
+            var createdAttendanceSummary = await _attendanceSummaryService.CreateAttendanceSummary(AttendanceSummary);
+            return CreatedAtAction(nameof(GetAttendanceSummaryByAttendanceSummaryId), new { createdAttendanceSummary.AttendanceSummaryId }, createdAttendanceSummary);
         }
 
-        [HttpPut("{attendanceSummaryId}")]
-        public IActionResult UpdateAttendanceSummary(AttendanceSummaryDto attendanceSummary, string attendanceSummaryId)
+        [HttpPut("{AttendanceSummaryId}")]
+        public async Task<IActionResult> UpdateAttendanceSummary(AttendanceSummaryCUDto AttendanceSummary, string AttendanceSummaryId)
         {
-            _attendanceSummaryService.UpdateAttendanceSummary(attendanceSummary, attendanceSummaryId);
+            await _attendanceSummaryService.UpdateAttendanceSummary(AttendanceSummary, AttendanceSummaryId);
             return NoContent();
         }
 
-        [HttpDelete("{attendanceSummaryId}")]
-        public IActionResult DeleteAttendanceSummary(string attendanceSummaryId)
+        [HttpDelete("{AttendanceSummaryId}")]
+        public async Task<IActionResult> DeleteAttendanceSummaryByAttendanceSummaryId(string AttendanceSummaryId)
         {
-            _attendanceSummaryService.DeleteAttendanceSummaryByAtendanceSummaryId(attendanceSummaryId);
+            await _attendanceSummaryService.DeleteAttendanceSummaryByAtendanceSummaryId(AttendanceSummaryId);
             return NoContent();
         }
     }

@@ -2,28 +2,29 @@
 using MongoDB.Driver;
 using nas_daily_api.DatabaseSettings;
 using nas_daily_api.Dtos;
+using nas_daily_api.Models;
 
 namespace nas_daily_api.Repositories
 {
     public class AbsenceRepository : IAbsenceRepository
     {
-        private readonly IMongoCollection<AbsenceDto> _absenceCollection;
+        private readonly IMongoCollection<Absence> _absenceCollection;
 
         public AbsenceRepository(IOptions<DatabaseSetting> options)
         {
             var mongoClient = new MongoClient(options.Value.ConnectionString);
             _absenceCollection = mongoClient.GetDatabase(options.Value.DatabaseName)
-                .GetCollection<AbsenceDto>(options.Value.AbsenceCollectionName);
+                .GetCollection<Absence>(options.Value.AbsenceCollectionName);
         }
-        public AbsenceDto Create(AbsenceDto absence)
+        public async Task<Absence> Create(Absence absence)
         {
-            _absenceCollection.InsertOne(absence);
+            await _absenceCollection.InsertOneAsync(absence);
             return absence;
         }
 
-        public string DeleteByAbsenceId(string absenceId)
+        public async Task<string> DeleteByAbsenceId(string absenceId)
         {
-            AbsenceDto absence = _absenceCollection.Find(absence => absence.AbsenceId == absenceId).FirstOrDefault();
+            Absence absence = await _absenceCollection.Find(absence => absence.AbsenceId == absenceId).FirstOrDefaultAsync();
             if (absence != null)
             {
                 _absenceCollection.DeleteOne(absence => absence.AbsenceId == absenceId);
@@ -32,20 +33,20 @@ namespace nas_daily_api.Repositories
             return "Failure";
         }
 
-        public List<AbsenceDto> GetAllAbsence()
+        public async Task<IEnumerable<Absence>> GetAllAbsence()
         {
-            return _absenceCollection.Find(_ => true).ToList();
+            return await _absenceCollection.Find(_ => true).ToListAsync();
         }
 
-        public AbsenceDto GetByAbsenceId(string absenceId)
+        public async Task<Absence> GetByAbsenceId(string absenceId)
         {
-            return _absenceCollection.Find(absence => absence.AbsenceId == absenceId).FirstOrDefault();
+            return await _absenceCollection.Find(absence => absence.AbsenceId == absenceId).FirstOrDefaultAsync();
         }
 
-        public AbsenceDto Update(AbsenceDto absence, string absenceId)
+        public async Task<Absence> Update(Absence absence, string absenceId)
         {
-            var filter = Builders<AbsenceDto>.Filter.Eq("AbsenceId", absenceId);
-            _absenceCollection.ReplaceOne(filter, absence);
+            var filter = Builders<Absence>.Filter.Eq("AbsenceId", absenceId);
+            await _absenceCollection.ReplaceOneAsync(filter, absence);
 
             return absence;
         }

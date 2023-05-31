@@ -4,10 +4,10 @@ namespace nas_daily_api.Services
 {
     public interface IAbsenceService
     {
-        AbsenceDto GetAbsenceByAbsenceId(string absenceId);
-        string DeleteAbsenceByAbsenceId(string absenceId);
-        List<AbsenceDto> GetAllAbsence();
-        AbsenceDto CreateAbsence(AbsenceDto absence);
-        void UpdateAbsence(AbsenceDto absence, string absenceId);
+        Task<AbsenceDto?> GetAbsenceByAbsenceId(string absenceId);
+        Task<string> DeleteAbsenceByAbsenceId(string absenceId);
+        Task<IEnumerable<AbsenceDto>> GetAllAbsence();
+        Task<AbsenceDto> CreateAbsence(AbsenceCreationDto absence);
+        Task UpdateAbsence(AbsenceUpdateDto absence, string absenceId);
     }
 }

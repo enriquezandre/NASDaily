@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Hosting;
 using nas_daily_api.Controllers;
 using nas_daily_api.DatabaseSettings;
 using nas_daily_api.Repositories;
@@ -65,4 +66,13 @@ void ConfigureServices(IServiceCollection services)
     builder.Services.AddScoped<ITasksService, TasksService>();
     builder.Services.AddScoped<IAbsenceRepository, AbsenceRepository>();
     builder.Services.AddScoped<IAbsenceService, AbsenceService>();
+    builder.Services.AddScoped<IAttendanceSummaryRepository, AttendanceSummaryRepository>();
+    builder.Services.AddScoped<IAttendanceSummaryService, AttendanceSummaryService>();
+    builder.Services.AddScoped<IEvaluationResultRepository, EvaluationResultRepository>();
+    builder.Services.AddScoped<IEvaluationResultService, EvaluationResultService>();
+    builder.Services.AddScoped<IEvaluationRatingRepository, EvaluationRatingRepository>();
+    builder.Services.AddScoped<IEvaluationRatingService, EvaluationRatingService>();
+
+    //AutoMapper
+    services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 }

@@ -1,5 +1,6 @@
 ﻿using MongoDB.Bson.Serialization.Attributes;
 using MongoDB.Bson;
+using nas_daily_api.Models;
 
 namespace nas_daily_api.Dtos
 {

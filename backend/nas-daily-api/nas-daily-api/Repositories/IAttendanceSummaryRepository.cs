@@ -1,15 +1,16 @@
 ﻿using nas_daily_api.Dtos;
+using nas_daily_api.Models;
 
 namespace nas_daily_api.Repositories
 {
     public interface IAttendanceSummaryRepository
     {
-        AttendanceSummaryDto GetByAttendanceSummaryId(string attendanceSummaryId);
+        Task<AttendanceSummary> GetByAttendanceSummaryId(string attendanceSummaryId);
 
-        string DeleteByAttendanceSummaryId(string attendanceSummaryId);
+        Task<string> DeleteByAttendanceSummaryId(string attendanceSummaryId);
 
-        AttendanceSummaryDto Create(AttendanceSummaryDto attendanceSummary);
-        AttendanceSummaryDto Update(AttendanceSummaryDto attendanceSummary, string userId);
-        List<AttendanceSummaryDto> GetAllAttendanceSummary();
+        Task<AttendanceSummary> Create(AttendanceSummary attendanceSummary);
+        Task<AttendanceSummary> Update(AttendanceSummary attendanceSummary, string userId);
+        Task<IEnumerable<AttendanceSummary>> GetAllAttendanceSummary();
     }
 }

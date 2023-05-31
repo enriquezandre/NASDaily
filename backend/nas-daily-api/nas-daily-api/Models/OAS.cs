@@ -2,7 +2,7 @@
 {
     public class OAS
     {
-        public string? UserId { get; set; }
+        public string? OASId { get; set; }
         public string? Name { get; set; }
         public string? Password { get; set; }
         public List<Office> Offices { get; set; } = new List<Office>();
