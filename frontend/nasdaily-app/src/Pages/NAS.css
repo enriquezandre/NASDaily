@@ -16,7 +16,7 @@
     color: #8A353C;
     border: none;
     padding: 0.3%;
-    width: 17rem;
+    width: 20rem;
     border-radius: 5px;
     font-family: 'Barlow', sans-serif;
 }
@@ -28,12 +28,12 @@
     font-weight: 500;
 }
 
-.activities-container{
+.result-container{
     margin-left: 1.5%;
     margin-right: 1.5%;
     border: 2px solid rgb(188, 188, 188);
     border-radius: 10px;
-    height: 63vh;
+    height: 65vh;
     width: auto;
 }
 
@@ -69,9 +69,24 @@
     pointer-events: none;
   }
 
-  .activities-summary{
-    padding: 1.5%;
+  .attendance-summary{
+    padding: 1%;
     font-family: 'Barlow', sans-serif;
     color: #8A353C;
     font-weight: 900;
+  }
+
+  .attendance-month-dropdown{
+    width: 8rem
+  }
+
+  .attendance-table{
+    text-align: center;
+    table-layout: fixed;
+    width: 100%
+  }
+
+  tbody{
+    font-weight: 100;
+    color: black;
   }

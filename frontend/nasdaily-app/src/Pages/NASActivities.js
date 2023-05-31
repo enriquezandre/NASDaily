@@ -1,7 +1,6 @@
 import React from 'react'
 import Header from '../Components/Header'
 import './NAS.css';
-import Dropdown from 'react-bootstrap/Dropdown';
 
 function NASActivities() {
     return (
@@ -11,37 +10,54 @@ function NASActivities() {
           <div className='nasmenu-button-container'>
             <button className='nasbtn-menu'>PERSONAL INFORMATION</button>
             <button className='nasbtn-menu'>ATTENDANCE SUMMARY</button>
-            <button className='nasbtn-menu'>ACTIVITIES SUMMARY</button>
             <button className='nasbtn-menu'>SCHEDULE OF DUTY</button>
             <button className='nasbtn-menu'>EVALUATION RESULT</button>
           </div>
-          <div className='activities-container'>
+          <div className='result-container'>
             <div className='nas-details'>
-              <p>SCHOLAR NAME:</p>
-              <Dropdown>
-                <Dropdown.Toggle variant="primary" id="month-dropdown" className="dropdown-toggle">
-                  MONTH
-                </Dropdown.Toggle>
-                <Dropdown.Menu>
-                  <Dropdown.Item href="#january">January</Dropdown.Item>
-                  <Dropdown.Item href="#february">February</Dropdown.Item>
-                  <Dropdown.Item href="#march">March</Dropdown.Item>
-                  {/* Add more dropdown items for other months */}
-                </Dropdown.Menu>
-              </Dropdown>
+              <p>SCHOLAR NAME: {'BELDEROL, KAYE CASSANDRA'}, {'20-2615-260'}</p>
+                <div>
+                  <label>
+                      MONTH:
+                      <select className='attendance-month-dropdown'>
+                          <option value="month">January</option>
+                          <option value="month">February</option>
+                          <option value="month">March</option>
+                          <option value="month">April</option>
+                          <option value="month">May</option>
+                      </select>
+                  </label>
+                </div>
             </div>
-            <div className='activities-summary'>
-                <p>ACTIVITIES SUMMARY</p>
-              <table>
-                <thead>
+            <div className='attendance-summary'>
+                <p>ACTIVITIES SUMMARY:</p>
+                <br/>
+              <table className='attendance-table'>
+                <thead style={{color: 'black', textTransform: 'uppercase'}}>
                   <tr>
                     <th>Date</th>
                     <th>Time-in</th>
                     <th>Time-out</th>
+                    <th>Activities Done</th>
+                    <th>Skills learned</th>
+                    <th>Values learned</th>
                   </tr>
                 </thead>
                 <tbody>
-                  {/* Add table rows with data */}
+                  <td>{'Dummy Text'}</td>
+                  <td>{'Dummy Text'}</td>
+                  <td>{'Dummy Text'}</td>
+                  <td>{'Dummy Text'}</td>
+                  <td>{'Dummy Text'}</td>
+                  <td>{'Dummy Text'}</td>
+                </tbody>
+                <tbody>
+                  <td>{'Dummy Text'}</td>
+                  <td>{'Dummy Text'}</td>
+                  <td>{'Dummy Text'}</td>
+                  <td>{'Dummy Text'}</td>
+                  <td>{'Dummy Text'}</td>
+                  <td>{'Dummy Text'}</td>
                 </tbody>
               </table>
             </div>
