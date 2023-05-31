@@ -69,13 +69,24 @@
     pointer-events: none;
   }
 
-  .activities-summary{
+  .attendance-summary{
     padding: 1%;
     font-family: 'Barlow', sans-serif;
     color: #8A353C;
     font-weight: 900;
   }
 
-  .dropdown-container{
+  .attendance-month-dropdown{
+    width: 8rem
+  }
 
+  .attendance-table{
+    text-align: center;
+    table-layout: fixed;
+    width: 100%
+  }
+
+  tbody{
+    font-weight: 100;
+    color: black;
   }

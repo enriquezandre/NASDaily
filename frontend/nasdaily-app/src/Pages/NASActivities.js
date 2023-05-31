@@ -15,11 +15,11 @@ function NASActivities() {
           </div>
           <div className='result-container'>
             <div className='nas-details'>
-              <p>SCHOLAR NAME:</p>
-                <div className='dropDownButtons'>
+              <p>SCHOLAR NAME: {'BELDEROL, KAYE CASSANDRA'}, {'20-2615-260'}</p>
+                <div>
                   <label>
                       MONTH:
-                      <select>
+                      <select className='attendance-month-dropdown'>
                           <option value="month">January</option>
                           <option value="month">February</option>
                           <option value="month">March</option>
@@ -29,10 +29,11 @@ function NASActivities() {
                   </label>
                 </div>
             </div>
-            <div className='activities-summary'>
-                <p>ACTIVITIES SUMMARY</p>
-              <table>
-                <thead>
+            <div className='attendance-summary'>
+                <p>ACTIVITIES SUMMARY:</p>
+                <br/>
+              <table className='attendance-table'>
+                <thead style={{color: 'black', textTransform: 'uppercase'}}>
                   <tr>
                     <th>Date</th>
                     <th>Time-in</th>
@@ -43,20 +44,20 @@ function NASActivities() {
                   </tr>
                 </thead>
                 <tbody>
-                  <td>asdasd</td>
-                  <td>asdasd</td>
-                  <td>asdasd</td>
-                  <td>asdasd</td>
-                  <td>asdasd</td>
-                  <td>asdasd</td>
+                  <td>{'Dummy Text'}</td>
+                  <td>{'Dummy Text'}</td>
+                  <td>{'Dummy Text'}</td>
+                  <td>{'Dummy Text'}</td>
+                  <td>{'Dummy Text'}</td>
+                  <td>{'Dummy Text'}</td>
                 </tbody>
                 <tbody>
-                  <td>asdasd</td>
-                  <td>asdasd</td>
-                  <td>asdasd</td>
-                  <td>asdasd</td>
-                  <td>asdasd</td>
-                  <td>asdasd</td>
+                  <td>{'Dummy Text'}</td>
+                  <td>{'Dummy Text'}</td>
+                  <td>{'Dummy Text'}</td>
+                  <td>{'Dummy Text'}</td>
+                  <td>{'Dummy Text'}</td>
+                  <td>{'Dummy Text'}</td>
                 </tbody>
               </table>
             </div>
