@@ -9,6 +9,7 @@ export class OASAttendance extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      nasProfiles: [],
       searchTerm: '',
       fullName: '',
       check: false,
@@ -23,9 +24,35 @@ export class OASAttendance extends Component {
     });
   };
 
+  componentDidMount(){
+    this.fetchNasProfiles();
+  }
+
+  fetchNasProfiles = async () => {
+    try {
+      const response = await fetch('https://localhost:7047/api/nas', {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+      console.log("visit" + response);
+      if(response.ok){
+        const nasList = await response.json();
+        const names = nasList.map((nas) => nas.name);
+        this.setState({ nasProfiles: names });
+      } else{
+        console.log('API request failed:', response.status);
+      }
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  };
+  
+
 
   render() {
-    const { searchTerm, fullName, check } = this.state;
+    const { nasProfiles, searchTerm, fullName, check } = this.state;
 
     return (
       <>
@@ -77,6 +104,9 @@ export class OASAttendance extends Component {
                 value={searchTerm}
                 onChange={(e) => this.setState({ searchTerm: e.target.value })}
               />
+              <datalist id='nasSearch'>
+                <option key={1} value={"test"}/>
+              </datalist>
               <button type='submit'>
                 <i className='material-icons search-icon'>search</i>
               </button>
