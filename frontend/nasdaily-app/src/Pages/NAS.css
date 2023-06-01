@@ -22,10 +22,16 @@
 }
 
 .nasbtn-menu:hover,
-.nasbtn-menu:focus{
+.nasbtn-menu:focus,
+.active{
     background-color: #8A353C;
     color: #FFDD5A;
     font-weight: 500;
+}
+
+.not-active{
+  pointer-events: none;
+  cursor: not-allowed;
 }
 
 .result-container{
@@ -35,6 +41,7 @@
     border-radius: 10px;
     height: 65vh;
     width: auto;
+    overflow-y: auto;
 }
 
 .nas-details{
@@ -89,4 +96,19 @@
   tbody{
     font-weight: 100;
     color: black;
+  }
+
+  .back-button{
+    border: none;
+    background-color: transparent;
+    font-size: small;
+  }
+
+  .back-button:hover{
+    text-decoration: underline;
+  }
+
+
+  .back-button-container{
+    margin: 1%;
   }

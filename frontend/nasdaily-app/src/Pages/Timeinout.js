@@ -134,9 +134,7 @@ const Timeinout = () => {
 
   return (
     <div>
-      {user && (
-        <Header username={username} />
-      )}
+      <Header username={username} />
       <div className="timeinout-image-container">
         <img src={GLE} alt="GLE" className="image-size" />
         <Welcome className="welcome" />
