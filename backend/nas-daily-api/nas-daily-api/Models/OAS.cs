@@ -1,7 +1,12 @@
-﻿namespace nas_daily_api.Models
+﻿using MongoDB.Bson.Serialization.Attributes;
+using MongoDB.Bson;
+
+namespace nas_daily_api.Models
 {
     public class OAS
     {
+        [BsonId]
+        [BsonRepresentation(BsonType.ObjectId)]
         public string? OASId { get; set; }
         public string? Name { get; set; }
         public string? Password { get; set; }

@@ -27,6 +27,16 @@ namespace nas_daily_api.Controllers
             return Ok(oas);
         }
 
+        [HttpGet("{name}")]
+        public async Task<IActionResult> GetOASByName(string oasId)
+        {
+            var oas = await _oasService.GetOASByName(oasId);
+            if (oas == null)
+                return NotFound();
+
+            return Ok(oas);
+        }
+
         [HttpGet]
         public async Task<IActionResult> GetAllOAS()
         {
@@ -38,7 +48,7 @@ namespace nas_daily_api.Controllers
         public async Task<IActionResult> Createoas(OASCreationDto oas)
         {
             var createdoas = await _oasService.CreateOAS(oas);
-            return CreatedAtAction(nameof(GetOASByOASId), new { OasId = createdoas.OASId }, createdoas);
+            return CreatedAtAction(nameof(GetOASByOASId), new { createdoas.OASId }, createdoas);
         }
 
         [HttpPut("{oasId}")]
