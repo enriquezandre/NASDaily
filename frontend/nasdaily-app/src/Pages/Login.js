@@ -18,17 +18,31 @@ export const Login = () => {
         },
       });
   
-      if (response.ok) {
+      const responseOas = await fetch('https://localhost:7047/api/oas', {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+      
+      if (response.ok || responseOas.ok) {
         const nasList = await response.json();
         console.log('NAS List:', nasList);
         console.log('Username:', username);
         console.log('Password:', password);
         const nas = nasList.find((n) => n.username === username && n.password === password);
+
+        const oasList = await responseOas.json();
+        const oas = oasList.find((o) => o.name === username && o.password === password);
   
         if (nas) {
           console.log('Successful login:', nas);
           // Successful login, redirect user to timeinout page
           window.location.href = `/${username}/timeinout`;
+        } else if (oas) {
+          console.log('Successful login:', oas);
+          // Successful login
+          window.location.href = `/${username}/OASAttendance`;
         } else {
           console.log('Invalid credentials');
           // Invalid credentials, display error message

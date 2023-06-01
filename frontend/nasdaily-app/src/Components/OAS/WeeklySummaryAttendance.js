@@ -3,7 +3,15 @@ import './WeeklySummaryAttendance.css';
 
 class WeeklySummaryAttendance extends Component {
   render() {
-    const { attend } = this.props;
+    const { attend, selectedMonth } = this.props;
+
+    const filteredLogs = selectedMonth
+    ? attend.filter((log) => {
+        const logDate = new Date(log.timeIn);
+        const logMonth = logDate.getMonth() + 1;
+        return logMonth === parseInt(selectedMonth);
+      })
+    : attend;
 
     return (
       <>
@@ -19,7 +27,7 @@ class WeeklySummaryAttendance extends Component {
             </tr>
 
             <tbody>
-              {attend.map((log) => {
+              {filteredLogs.map((log) => {
                 const timeIn = new Date(log.timeIn);
                 const timeOut = new Date(log.timeOut);
 
