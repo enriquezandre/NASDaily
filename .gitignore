@@ -475,3 +475,20 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
+backend/nas-daily-api/.vs/nas-daily-api/v17/.suo
+backend/nas-daily-api/nas-daily-api/bin/Debug/net7.0/nas-daily-api.dll
+.gitignore
+backend/nas-daily-api/nas-daily-api/obj/project.nuget.cache
+backend/nas-daily-api/nas-daily-api/obj/Debug/net7.0/apphost.exe
+backend/nas-daily-api/nas-daily-api/obj/Debug/net7.0/nas-daily-api.assets.cache
+.gitignore
+backend/nas-daily-api/nas-daily-api/obj/Debug/net7.0/nas-daily-api.csproj.FileListAbsolute.txt
+backend/nas-daily-api/nas-daily-api/obj/Debug/net7.0/nas-daily-api.dll
+.gitignore
+backend/nas-daily-api/nas-daily-api/obj/Debug/net7.0/nas-daily-api.genruntimeconfig.cache
+backend/nas-daily-api/nas-daily-api/obj/Debug/net7.0/nas-daily-api.pdb
+backend/nas-daily-api/nas-daily-api/obj/Debug/net7.0/ref/nas-daily-api.dll
+.gitignore
+backend/nas-daily-api/nas-daily-api/obj/Debug/net7.0/nas-daily-api.GeneratedMSBuildEditorConfig.editorconfig
+backend/nas-daily-api/nas-daily-api/obj/Debug/net7.0/refint/nas-daily-api.dll
+backend/nas-daily-api/nas-daily-api/bin/Debug/net7.0/nas-daily-api.dll
