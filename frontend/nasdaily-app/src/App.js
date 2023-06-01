@@ -15,7 +15,7 @@ class App extends React.Component {
           <Route path="/" element={<Login/>}/>
           <Route path="/:username/timeinout" element={<Timeinout />} />
           <Route path="/:username/NASActivities" element={<NASActivities/>}/>
-          <Route path="/OASAttendance" element={<OASAttendance/>}/>
+          <Route path="/:username/OASAttendance" element={<OASAttendance/>}/>
         </Routes>
       </>
     );
