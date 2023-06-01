@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import Header from '../Components/Header';
 import { Link } from 'react-router-dom';
 import './NAS.css';
 
 function NASActivities() {
   const { username } = useParams();
+  const navigate = useNavigate();
   const [user, setUser] = useState(null);
   const [logs, setLogs] = useState([]);
   const [selectedMonth, setSelectedMonth] = useState('');
@@ -33,6 +34,12 @@ function NASActivities() {
     setSelectedMonth(event.target.value);
   };
 
+  const handleLogout = () => {
+    // Perform logout actions
+    // Redirect the user to the login page
+    navigate('/');
+  };
+
   const filteredLogs = selectedMonth
     ? logs.filter((log) => {
         const logDate = new Date(log.timeIn);
@@ -43,7 +50,7 @@ function NASActivities() {
 
   return (
     <>
-      <Header username={username} />
+      <Header username={username} onLogout={handleLogout} />
       <div className='nasactivity-main-container'>
         <div className='nasmenu-button-container'>
           <button className='nasbtn-menu not-active'>PERSONAL INFORMATION</button>
@@ -74,8 +81,8 @@ function NASActivities() {
                   <option value="8">August</option>
                   <option value="9">September</option>
                   <option value="10">October</option>
-                  <option value="10">November</option>
-                  <option value="10">December</option>
+                  <option value="11">November</option>
+                  <option value="12">December</option>
                 </select>
               </label>
             </div>
