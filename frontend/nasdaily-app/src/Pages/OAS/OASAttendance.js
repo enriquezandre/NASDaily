@@ -10,6 +10,7 @@ export class OASAttendance extends Component {
     super(props);
     this.state = {
       nasProfiles: [],
+      logs: [],
       searchTerm: '',
       fullName: '',
       check: false,
@@ -30,7 +31,7 @@ export class OASAttendance extends Component {
       });
       if(response.ok){
         const nasList = await response.json();
-        const names = nasList.map((nas) => nas.name);
+        const names = nasList.map((nas) => nas.username);
         this.setState({ nasProfiles: names });
       } else{
         console.log('API request failed:', response.status);
@@ -41,7 +42,7 @@ export class OASAttendance extends Component {
   }; 
 
   render() {
-    const { nasProfiles, searchTerm, fullName, check } = this.state;
+    const { nasProfiles, logs, searchTerm, fullName, check } = this.state;
     
     const filteredProfiles = nasProfiles.filter(
       (name) =>
@@ -49,10 +50,15 @@ export class OASAttendance extends Component {
         (name.toLowerCase().startsWith(searchTerm.toLowerCase()))
     )
 
-    const handleSearch = (e) => {
+    const handleSearch = async (e) => {
       e.preventDefault();
+
+      const response = await fetch(`https://localhost:7047/api/nas/username/${searchTerm}`);
+      const userData = await response.json();
+
       this.setState({
-        fullName: searchTerm,
+        fullName: userData.name,
+        logs: userData.logs,
         check: true,
       });
     };
@@ -129,11 +135,12 @@ export class OASAttendance extends Component {
             <label className='labelDropDown'>
               MONTH:
               <select>
-                <option value="month">January</option>
-                <option value="month">February</option>
-                <option value="month">March</option>
-                <option value="month">April</option>
+                <option value="month">June</option>
                 <option value="month">May</option>
+                <option value="month">April</option>
+                <option value="month">March</option>
+                <option value="month">February</option>
+                <option value="month">January</option>
               </select>
             </label>
           </div>
@@ -141,6 +148,7 @@ export class OASAttendance extends Component {
           <div className='data'>
             <SummaryAttendanceOAS
               check={check}
+              logTable={logs}
             />
           </div>
         </div>
