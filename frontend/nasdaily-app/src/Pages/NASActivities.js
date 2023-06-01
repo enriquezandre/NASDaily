@@ -39,7 +39,7 @@ function NASActivities() {
           </div>
           <div className='result-container'>
             <div className='nas-details'>
-              <p>SCHOLAR NAME: {user?.name}, {user?.username}</p>
+              <p>SCHOLAR NAME: {user?.name}</p>
                 <div>
                   <label>
                       MONTH:
