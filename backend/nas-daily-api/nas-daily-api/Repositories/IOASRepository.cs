@@ -1,20 +1,18 @@
 ﻿using nas_daily_api.Dtos;
+using nas_daily_api.Models;
 
 namespace nas_daily_api.Repositories
 {
     public interface IOASRepository
     {
-        OASDto GetByUserId(string userId);
-        OASDto GetByName(string name);
+        Task<OAS> GetByUserId(string userId);
+        Task<OAS> GetByName(string name);
 
-        string DeleteByUserId(string userId);
-        string DeleteByName(string name);
+        Task<string> DeleteByUserId(string userId);
+        Task<string> DeleteByName(string name);
 
-        OASDto Create(OASDto oas);
-        OASDto Update(OASDto oas, string userId);
-        List<OASDto> GetAllOAS();
-
-
-        // Add more method signatures as per your requirements
+        Task<OAS> Create(OAS oas);
+        Task<OAS> Update(OAS oas, string userId);
+        Task<IEnumerable<OAS>> GetAllOAS();
     }
 }

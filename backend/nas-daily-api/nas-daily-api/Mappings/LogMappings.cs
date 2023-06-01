@@ -10,6 +10,7 @@ namespace nas_daily_api.Mappings
         {
             CreateMap<Log, LogDto>();
             CreateMap<LogDto, Log>();
+            CreateMap<LogUpdateDto, Log>();
         }
     }
 }

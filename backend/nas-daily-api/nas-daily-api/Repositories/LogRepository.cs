@@ -2,6 +2,7 @@
 using MongoDB.Bson;
 using MongoDB.Driver;
 using nas_daily_api.DatabaseSettings;
+using nas_daily_api.Dtos;
 using nas_daily_api.Models;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -50,10 +51,30 @@ namespace nas_daily_api.Repositories
         }
         public async Task AddLogToNas(string userName, Log log)
         {
-            var filter = Builders<NAS>.Filter.Eq("Username", userName);
-            var update = Builders<NAS>.Update.Push("Logs", log);
+            var nasFilter = Builders<NAS>.Filter.Eq("Username", userName);
+            var nasUpdate = Builders<NAS>.Update.Push("Logs", log);
 
-            await _nasCollection.UpdateOneAsync(filter, update);
+            await _nasCollection.UpdateOneAsync(nasFilter, nasUpdate);
+
+            await _logCollection.InsertOneAsync(log);
+
+            var task = new Tasks
+            {
+                TaskId = log.Tasks.TaskId,
+                ActivitiesDone = log.Tasks.ActivitiesDone,
+                SkillsLearned = log.Tasks.SkillsLearned,
+                ValuesLearned = log.Tasks.ValuesLearned
+            };
+
+            await _taskCollection.InsertOneAsync(task);
+        }
+
+        public async Task<Log> UpdateLog(string logId, Log log)
+        {
+            var filter = Builders<Log>.Filter.Eq("LogId", logId);
+            await _logCollection.ReplaceOneAsync(filter, log);
+
+            return log;
         }
     }
 }

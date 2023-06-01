@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Cors.Infrastructure;
+using Microsoft.AspNetCore.Mvc;
 using nas_daily_api.Dtos;
 using nas_daily_api.Services;
 using System.Threading.Tasks;
@@ -54,7 +55,14 @@ namespace nas_daily_api.Controllers
             }
 
             await _logService.AddLogToNas(userName, logDto);
-            return Ok();
+            return Ok(logDto);
+        }
+
+        [HttpPut("{oasId}")]
+        public async Task<IActionResult> UpdateLog(LogUpdateDto log, string logId)
+        {
+            await _logService.UpdateLog(logId, log);
+            return NoContent();
         }
     }
 }

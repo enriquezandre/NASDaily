@@ -9,39 +9,39 @@ namespace nas_daily_api.Repositories
 {
     public class OASRepository : IOASRepository
     {
-        private readonly IMongoCollection<OASDto> _oasCollection;
+        private readonly IMongoCollection<OAS> _oasCollection;
 
         public OASRepository(IOptions<DatabaseSetting> options)
         {
             var mongoClient = new MongoClient(options.Value.ConnectionString);
             _oasCollection = mongoClient.GetDatabase(options.Value.DatabaseName)
-                .GetCollection<OASDto>(options.Value.OASCollectionName);
+                .GetCollection<OAS>(options.Value.OASCollectionName);
         }
 
-        public OASDto GetByUserId(string UserId)
+        public async Task<OAS> GetByUserId(string UserId)
         {
-            return _oasCollection.Find(oas => oas.UserId == UserId).FirstOrDefault();
+            return await _oasCollection.Find(oas => oas.OASId == UserId).FirstOrDefaultAsync();
         }
-        public OASDto GetByName(string Name)
+        public async Task<OAS> GetByName(string Name)
         {
-            return _oasCollection.Find(oas => oas.Name == Name).FirstOrDefault();
+            return await _oasCollection.Find(oas => oas.Name == Name).FirstOrDefaultAsync();
         }
 
-        public string DeleteByUserId(string UserId)
+        public async Task<string> DeleteByUserId(string UserId)
         {
-            OASDto user = _oasCollection.Find(oas => oas.UserId == UserId).FirstOrDefault();
+            OAS user = await _oasCollection.Find(oas => oas.OASId == UserId).FirstOrDefaultAsync();
             if (user != null)
             {
-                _oasCollection.DeleteOne(oas => oas.UserId == UserId);
+                _oasCollection.DeleteOne(oas => oas.OASId == UserId);
                 return UserId;
             }
             return "Failure";
         }
 
 
-        public string DeleteByName(string Name)
+        public async Task<string> DeleteByName(string Name)
         {
-            OASDto user = _oasCollection.Find(oas => oas.Name == Name).FirstOrDefault();
+            OAS user = await _oasCollection.Find(oas => oas.Name == Name).FirstOrDefaultAsync();
             if (user != null)
             {
                 _oasCollection.DeleteOne(oas => oas.Name == Name);
@@ -50,26 +50,25 @@ namespace nas_daily_api.Repositories
             return "Failure";
         }
 
-        public OASDto Create(OASDto oas)
+        public async Task<OAS> Create(OAS oas)
         {
-            _oasCollection.InsertOne(oas);
+            await _oasCollection.InsertOneAsync(oas);
             return oas;
 
         }
 
-        public OASDto Update(OASDto oas, string userId)
+        public async Task<OAS> Update(OAS oas, string userId)
         {
-            var filter = Builders<OASDto>.Filter.Eq("UserId", userId);
-            _oasCollection.ReplaceOne(filter, oas);
+            var filter = Builders<OAS>.Filter.Eq("OASId", userId);
+            await _oasCollection.ReplaceOneAsync(filter, oas);
 
             return oas;
         }
 
-        public List<OASDto> GetAllOAS()
+        public async Task<IEnumerable<OAS>> GetAllOAS()
         {
-            return _oasCollection.Find(_ => true).ToList();
+            return await _oasCollection.Find(_ => true).ToListAsync();
         }
 
-        // Add more methods as per your requirements
     }
 }

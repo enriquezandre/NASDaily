@@ -1,15 +1,16 @@
 ﻿using nas_daily_api.Dtos;
+using nas_daily_api.Models;
 
 namespace nas_daily_api.Repositories
 {
     public interface IAbsenceRepository
     {
-        AbsenceDto GetByAbsenceId(string absenceId);
+        Task<Absence> GetByAbsenceId(string absenceId);
 
-        string DeleteByAbsenceId(string absenceId);
+        Task<string> DeleteByAbsenceId(string absenceId);
 
-        AbsenceDto Create(AbsenceDto absence);
-        AbsenceDto Update(AbsenceDto absence, string userId);
-        List<AbsenceDto> GetAllAbsence();
+        Task<Absence> Create(Absence absence);
+        Task<Absence> Update(Absence absence, string userId);
+        Task<IEnumerable<Absence>> GetAllAbsence();
     }
 }

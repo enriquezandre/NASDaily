@@ -53,10 +53,10 @@ namespace nas_daily_api.Controllers
             return CreatedAtAction(nameof(GetNASByNASId), new { nasId = createdNAS.NASId }, createdNAS);
         }
 
-        [HttpPut("{nasId}")]
-        public async Task<IActionResult> UpdateNAS(string nasId, NASDto nas)
+        [HttpPut("{userName}")]
+        public async Task<IActionResult> UpdateNAS(string userName, NASUpdationDto nas)
         {
-            await _nasService.UpdateNAS(nasId, nas);
+            await _nasService.UpdateNAS(userName, nas);
             return NoContent();
         }
 

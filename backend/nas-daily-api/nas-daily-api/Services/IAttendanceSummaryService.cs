@@ -4,10 +4,10 @@ namespace nas_daily_api.Services
 {
     public interface IAttendanceSummaryService
     {
-        AttendanceSummaryDto GetAttendanceSummaryByAttendanceSummaryId(string attendanceSummaryId);
-        string DeleteAttendanceSummaryByAtendanceSummaryId(string attendanceSummaryId);
-        List<AttendanceSummaryDto> GetAllAttendanceSummary();
-        AttendanceSummaryDto CreateAttendanceSummary(AttendanceSummaryDto attendanceSummary);
-        void UpdateAttendanceSummary(AttendanceSummaryDto attendanceSummary, string attendanceSummaryId);
+        Task<AttendanceSummaryDto?> GetAttendanceSummaryByAttendanceSummaryId(string attendanceSummaryId);
+        Task<string> DeleteAttendanceSummaryByAtendanceSummaryId(string attendanceSummaryId);
+        Task<IEnumerable<AttendanceSummaryDto>> GetAllAttendanceSummary();
+        Task<AttendanceSummaryDto> CreateAttendanceSummary(AttendanceSummaryCUDto attendanceSummary);
+        Task UpdateAttendanceSummary(AttendanceSummaryCUDto attendanceSummary, string attendanceSummaryId);
     }
 }

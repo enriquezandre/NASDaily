@@ -6,6 +6,7 @@ import './NAS.css';
 function NASActivities() {
   const { username } = useParams();
   const [user, setUser] = useState(null);
+  const [logs, setLogs] = useState([]);
 
   useEffect(() => {
     const fetchUserData = async () => {
@@ -14,6 +15,7 @@ function NASActivities() {
         if (response.ok) {
           const userData = await response.json();
           setUser(userData);
+          setLogs(userData.logs);
         } else {
           throw new Error('Failed to fetch user data');
         }
@@ -37,7 +39,7 @@ function NASActivities() {
           </div>
           <div className='result-container'>
             <div className='nas-details'>
-              <p>SCHOLAR NAME: {user?.name}, {user?.nasId}</p>
+              <p>SCHOLAR NAME: {user?.name}, {user?.username}</p>
                 <div>
                   <label>
                       MONTH:
@@ -54,34 +56,42 @@ function NASActivities() {
             <div className='attendance-summary'>
                 <p>ACTIVITIES SUMMARY:</p>
                 <br/>
-              <table className='attendance-table'>
-                <thead style={{color: 'black', textTransform: 'uppercase'}}>
-                  <tr>
-                    <th>Date</th>
-                    <th>Time-in</th>
-                    <th>Time-out</th>
-                    <th>Activities Done</th>
-                    <th>Skills learned</th>
-                    <th>Values learned</th>
+                <table className='attendance-table'>
+            <thead style={{ color: 'black', textTransform: 'uppercase' }}>
+              <tr>
+                <th>Date</th>
+                <th>Time-in</th>
+                <th>Time-out</th>
+                <th>Activities Done</th>
+                <th>Skills learned</th>
+                <th>Values learned</th>
+              </tr>
+            </thead>
+            <tbody>
+              {logs.map((log) => {
+                const timeIn = new Date(log.timeIn);
+                const timeOut = new Date(log.timeOut);
+
+                const formatDate = (date) => {
+                  const year = date.getFullYear();
+                  const month = String(date.getMonth() + 1).padStart(2, '0');
+                  const day = String(date.getDate()).padStart(2, '0');
+                  return `${year}-${month}-${day}`;
+                };
+
+                return (
+                  <tr key={log.logId}>
+                    <td>{formatDate(timeIn)}</td>
+                    <td>{timeIn.toLocaleTimeString()}</td>
+                    <td>{timeOut.toLocaleTimeString()}</td>
+                    <td>{log.tasks.activitiesDone}</td>
+                    <td>{log.tasks.skillsLearned}</td>
+                    <td>{log.tasks.valuesLearned}</td>
                   </tr>
-                </thead>
-                <tbody>
-                  <td>{'Dummy Text'}</td>
-                  <td>{'Dummy Text'}</td>
-                  <td>{'Dummy Text'}</td>
-                  <td>{'Dummy Text'}</td>
-                  <td>{'Dummy Text'}</td>
-                  <td>{'Dummy Text'}</td>
-                </tbody>
-                <tbody>
-                  <td>{'Dummy Text'}</td>
-                  <td>{'Dummy Text'}</td>
-                  <td>{'Dummy Text'}</td>
-                  <td>{'Dummy Text'}</td>
-                  <td>{'Dummy Text'}</td>
-                  <td>{'Dummy Text'}</td>
-                </tbody>
-              </table>
+                );
+              })}
+            </tbody>
+          </table>
             </div>
           </div>
         </div>

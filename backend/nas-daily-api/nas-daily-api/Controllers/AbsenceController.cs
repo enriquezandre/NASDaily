@@ -10,47 +10,49 @@ namespace nas_daily_api.Controllers
     public class AbsenceController : ControllerBase
     {
         private readonly IAbsenceService _absenceService;
+        private readonly ILogger<AbsenceController> _logger;
 
-        public AbsenceController(IAbsenceService absenceService)
+        public AbsenceController(IAbsenceService AbsenceService, ILogger<AbsenceController> logger)
         {
-            _absenceService = absenceService;
+            _absenceService = AbsenceService;
+            _logger = logger;
         }
 
-        [HttpGet("{absenceId}")]
-        public IActionResult GetAbsenceByAbsenceId(string absenceId)
+        [HttpGet("{AbsenceId}")]
+        public async Task<IActionResult> GetAbsenceByAbsenceId(string AbsenceId)
         {
-            var absence = _absenceService.GetAbsenceByAbsenceId(absenceId);
-            if (absence == null)
+            var Absence = await _absenceService.GetAbsenceByAbsenceId(AbsenceId);
+            if (Absence == null)
                 return NotFound();
 
-            return Ok(absence);
+            return Ok(Absence);
         }
 
         [HttpGet]
-        public IActionResult GetAllAbsence()
+        public async Task<IActionResult> GetAllAbsence()
         {
-            var allAbsence = _absenceService.GetAllAbsence();
+            var allAbsence = await _absenceService.GetAllAbsence();
             return Ok(allAbsence);
         }
 
         [HttpPost]
-        public IActionResult CreateAbsence(AbsenceDto absence)
+        public async Task<IActionResult> CreateAbsence(AbsenceCreationDto Absence)
         {
-            var createdAbsence = _absenceService.CreateAbsence(absence);
-            return CreatedAtAction(nameof(GetAbsenceByAbsenceId), new { absenceId = createdAbsence.AbsenceId }, createdAbsence);
+            var createdAbsence = await _absenceService.CreateAbsence(Absence);
+            return CreatedAtAction(nameof(GetAbsenceByAbsenceId), new { createdAbsence.AbsenceId }, createdAbsence);
         }
 
-        [HttpPut("{absenceId}")]
-        public IActionResult UpdateAbsence(AbsenceDto absence, string absenceId)
+        [HttpPut("{AbsenceId}")]
+        public async Task<IActionResult> UpdateAbsence(AbsenceUpdateDto Absence, string AbsenceId)
         {
-            _absenceService.UpdateAbsence(absence, absenceId);
+            await _absenceService.UpdateAbsence(Absence, AbsenceId);
             return NoContent();
         }
 
-        [HttpDelete("{absenceId}")]
-        public IActionResult DeleteAbsence(string absenceId)
+        [HttpDelete("{AbsenceId}")]
+        public async Task<IActionResult> DeleteAbsenceByAbsenceId(string AbsenceId)
         {
-            _absenceService.DeleteAbsenceByAbsenceId(absenceId);
+            await _absenceService.DeleteAbsenceByAbsenceId(AbsenceId);
             return NoContent();
         }
 

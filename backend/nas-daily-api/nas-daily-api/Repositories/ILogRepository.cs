@@ -11,5 +11,6 @@ namespace nas_daily_api.Repositories
         Task<Log> GetLogById(string logId);
         Task<IEnumerable<Log>> GetAllLogs();
         Task AddLogToNas(string nasId, Log log);
+        Task<Log> UpdateLog(string logId, Log log);
     }
 }

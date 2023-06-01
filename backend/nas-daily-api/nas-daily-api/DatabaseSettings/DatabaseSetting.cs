@@ -13,5 +13,7 @@
         public string? TasksCollectionName { get; set; }
         public string? AbsenceCollectionName { get; set; }
         public string? AttendanceSummaryCollectionName { get; set; }
+        public string? EvaluationResultCollectionName { get; set; }
+        public string? EvaluationRatingCollectionName { get; set; }
     }
 }
