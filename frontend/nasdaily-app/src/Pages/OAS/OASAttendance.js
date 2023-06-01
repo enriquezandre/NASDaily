@@ -16,14 +16,6 @@ export class OASAttendance extends Component {
     };
   }
 
-  handleSearch = (e) => {
-    e.preventDefault();
-    this.setState({
-      fullName: 'BELDEROL, KAYE CASSANDRA',
-      check: true,
-    });
-  };
-
   componentDidMount(){
     this.fetchNasProfiles();
   }
@@ -36,7 +28,6 @@ export class OASAttendance extends Component {
           'Content-Type': 'application/json',
         },
       });
-      console.log("visit" + response);
       if(response.ok){
         const nasList = await response.json();
         const names = nasList.map((nas) => nas.name);
@@ -47,12 +38,24 @@ export class OASAttendance extends Component {
     } catch (error) {
       console.error('Error:', error);
     }
-  };
-  
-
+  }; 
 
   render() {
     const { nasProfiles, searchTerm, fullName, check } = this.state;
+    
+    const filteredProfiles = nasProfiles.filter(
+      (name) =>
+        name &&
+        (name.toLowerCase().startsWith(searchTerm.toLowerCase()))
+    )
+
+    const handleSearch = (e) => {
+      e.preventDefault();
+      this.setState({
+        fullName: searchTerm,
+        check: true,
+      });
+    };
 
     return (
       <>
@@ -96,16 +99,19 @@ export class OASAttendance extends Component {
         <div className='row'>
           <div className='heading'>
             <p className='name'>{fullName}</p>
-            <form className='searchBar' onSubmit={this.handleSearch}>
+            <form className='searchBar' onSubmit={handleSearch}>
               <input
                 className='searchBarInput'
                 type='text'
                 placeholder='Search...'
                 value={searchTerm}
                 onChange={(e) => this.setState({ searchTerm: e.target.value })}
+                list='nasSearch'
               />
               <datalist id='nasSearch'>
-                <option key={1} value={"test"}/>
+                {filteredProfiles.map((name, index) => (
+                  <option key={index} value={name} />
+                ))}
               </datalist>
               <button type='submit'>
                 <i className='material-icons search-icon'>search</i>
