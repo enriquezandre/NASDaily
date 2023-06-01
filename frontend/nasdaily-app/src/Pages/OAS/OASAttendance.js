@@ -14,6 +14,7 @@ export class OASAttendance extends Component {
       searchTerm: '',
       fullName: '',
       check: false,
+      selectedMonth: ''
     };
   }
 
@@ -42,7 +43,7 @@ export class OASAttendance extends Component {
   }; 
 
   render() {
-    const { nasProfiles, logs, searchTerm, fullName, check } = this.state;
+    const { nasProfiles, logs, searchTerm, fullName, check, selectedMonth } = this.state;
     
     const filteredProfiles = nasProfiles.filter(
       (name) =>
@@ -50,6 +51,12 @@ export class OASAttendance extends Component {
         (name.toLowerCase().startsWith(searchTerm.toLowerCase()))
     )
 
+    const handleMonthChange = (event) => {
+      this.setState({
+        selectedMonth: event.target.value
+      })
+    };
+    
     const handleSearch = async (e) => {
       e.preventDefault();
 
@@ -134,14 +141,21 @@ export class OASAttendance extends Component {
             </label>
             <label className='labelDropDown'>
               MONTH:
-              <select>
-                <option value="month">June</option>
-                <option value="month">May</option>
-                <option value="month">April</option>
-                <option value="month">March</option>
-                <option value="month">February</option>
-                <option value="month">January</option>
-              </select>
+              <select className='attendance-month-dropdown' onChange={handleMonthChange} value={selectedMonth}>
+                  <option value="">All Months</option>
+                  <option value="1">January</option>
+                  <option value="2">February</option>
+                  <option value="3">March</option>
+                  <option value="4">April</option>
+                  <option value="5">May</option>
+                  <option value="6">June</option>
+                  <option value="7">July</option>
+                  <option value="8">August</option>
+                  <option value="9">September</option>
+                  <option value="10">October</option>
+                  <option value="10">November</option>
+                  <option value="10">December</option>
+                </select>
             </label>
           </div>
 
@@ -149,6 +163,7 @@ export class OASAttendance extends Component {
             <SummaryAttendanceOAS
               check={check}
               logTable={logs}
+              selectedMonth={selectedMonth}
             />
           </div>
         </div>

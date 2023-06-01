@@ -3,8 +3,9 @@ import WeeklySummaryAttendance from './WeeklySummaryAttendance';
 import './SummaryAttendanceOAS.css';
 
 class SummaryAttendanceOAS extends Component {
+
   render() {
-    const { check, logTable } = this.props;
+    const { check, logTable, selectedMonth } = this.props;
 
     return (
       <>
@@ -12,7 +13,7 @@ class SummaryAttendanceOAS extends Component {
           <div>
             <div className="weeklySummaryOfAttendance">
               <h4 className="title">WEEKLY ATTENDANCE</h4>
-              <WeeklySummaryAttendance attend={logTable} />
+              <WeeklySummaryAttendance attend={logTable} selectedMonth={selectedMonth} />
             </div>
 
             <br />
