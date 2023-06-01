@@ -17,14 +17,30 @@ class WeeklySummaryAttendance extends Component {
               <th className="weekly">SKILLS LEARNED</th>
               <th className="weekly">VALUES LEARNED</th>
             </tr>
-            <tr>
-              <td className="weekly">Dummy Text</td>
-              <td className="weekly">Dummy Text</td>
-              <td className="weekly">Dummy Text</td>
-              <td className="weekly">Dummy Text</td>
-              <td className="weekly">Dummy Text</td>
-              <td className="weekly">Dummy Text</td>
-            </tr>
+
+            <tbody>
+              {attend.map((log) => {
+                const timeIn = new Date(log.timeIn);
+                const timeOut = new Date(log.timeOut);
+
+                const formatDate = (date) => {
+                  const year = date.getFullYear();
+                  const month = String(date.getMonth() + 1).padStart(2, '0');
+                  const day = String(date.getDate()).padStart(2, '0');
+                  return `${year}-${month}-${day}`;
+                };
+                return (
+                  <tr key={log.logId}>
+                    <td className="weekly">{formatDate(timeIn)}</td>
+                    <td className="weekly">{timeIn.toLocaleTimeString()}</td>
+                    <td className="weekly">{timeOut.toLocaleTimeString()}</td>
+                    <td className="weekly">{log.tasks.activitiesDone}</td>
+                    <td className="weekly">{log.tasks.skillsLearned}</td>
+                    <td className="weekly">{log.tasks.valuesLearned}</td>
+                  </tr>
+                );
+              })}
+            </tbody>
           </table>
         </div>
       </>
