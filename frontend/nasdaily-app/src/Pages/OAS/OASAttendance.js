@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import Header from '../../Components/Header.js';
+import Header from '../../Components/Header.js'
 import Button from '../../Components/Common/Buttons/Button.js'
 import SummaryAttendanceOAS from '../../Components/OAS/SummaryAttendanceOAS.js';
 import '../OAS/OASAttendance.css'
@@ -73,7 +73,7 @@ export class OASAttendance extends Component {
     return (
       <>
         <div>
-          <Header username={"OAS"} onLogout={null} />
+          <Header username={"OAS"}/>
         </div>
 
         <div className='menuNav'>
