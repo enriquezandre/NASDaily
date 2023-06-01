@@ -36,7 +36,8 @@ class Welcome extends React.Component {
       const response = await fetch('https://localhost:7047/api/nas');
       if (response.ok) {
         const userData = await response.json();
-        this.setState({ user: userData[0] });
+        const user = userData[0];
+        this.setState({ user });
       } else {
         throw new Error('Failed to fetch user data');
       }
